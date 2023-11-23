@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "flowbite": "^2.1.1",
+    "framer-motion": "^10.16.5",
     "i18next": "^23.7.3",
     "i18next-browser-languagedetector": "^7.2.0",
     "i18next-http-backend": "^2.4.1",
