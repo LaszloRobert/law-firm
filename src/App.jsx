@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
-import { Navbar, About, Appointment, Contact, Hero, Services, Team } from './components'
+import { Navbar, About, Appointment, Contact, Hero, Services, Team, Footer } from './components'
 
 const App = () => (
   <BrowserRouter>
@@ -13,7 +13,9 @@ const App = () => (
       </div>
       <About />
       <Services />
+      <Team />
       <Contact />
+      <Footer />
     </div>
 
   </BrowserRouter >

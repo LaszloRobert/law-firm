@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { navLinks } from '../constants'
 import { useTranslation } from 'react-i18next'
@@ -6,6 +6,7 @@ import ReactCountryFlag from "react-country-flag"
 import i18next from 'i18next'
 import { style } from '../style'
 import { close, menu } from "../assets"
+import { getCalApi } from "@calcom/embed-react";
 
 
 const Navbar = () => {
@@ -35,6 +36,18 @@ const Navbar = () => {
 
     window.addEventListener('scroll', changeColor);
 
+    useEffect(() => {
+        (async function () {
+            const cal = await getCalApi();
+            cal("ui", {
+                theme: "dark",
+                styles: {
+                    branding: { brandColor: "#000000" }
+                }
+            });
+        })();
+    }, []);
+
     return (
         <nav className={`${color ? "bg-zinc-900" : "bg-transparent"} w-full top-0 fixed ease-in-out duration-700`}>
             <div className='w-full flex justify-between items-center mx-auto max-w-7xl py-3 px-3'>
@@ -59,7 +72,14 @@ const Navbar = () => {
                             <a href="#about" className="">{t(link.languageID)}</a>
                         </li>
                     ))}
-                    <li>
+                    <li key="appointment">
+                        <button data-cal-link="robert-laszlo/programare" data-cal-config='{"layout":"month_view"}'
+                            className=' text-primary font-medium text-[1.1rem] cursor-pointer hover:animate-pulse hover:text-gray-200'
+                        >
+                            {t('Navbar.Appointment')}
+                        </button>
+                    </li>
+                    <li key="countries">
                         <button id="countryDropdown"
                             data-dropdown-toggle="dropdown"
                             data-dropdown-trigger="click"

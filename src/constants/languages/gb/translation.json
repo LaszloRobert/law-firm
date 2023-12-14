@@ -1,7 +1,13 @@
 {
-    "Home": "Home",
-    "About": "About",
-    "Services": "Services",
-    "Team": "Team",
-    "Contact": "Contact"
+    "Navbar": {
+        "Home": "Home",
+        "About": "About",
+        "Services": "Services",
+        "Team": "Team",
+        "Contact": "Contact",
+        "Appointment": "Appointment"
+    },
+    "Footer": {
+        "Developed": "Created by Evolve Software Solutions"
+    }
 }

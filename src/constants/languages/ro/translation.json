@@ -1,7 +1,14 @@
 {
-    "Home": "Acasa",
-    "About": "Despre",
-    "Services": "Servicii",
-    "Team": "Echipa",
-    "Contact": "Contact"
+    "Navbar": {
+        "Home": "Acasa",
+        "About": "Despre",
+        "Services": "Servicii",
+        "Team": "Echipa",
+        "Contact": "Contact",
+        "Appointment": "Programare",
+        "Contact_Location": "Sediu"
+    },
+    "Footer": {
+        "Developed": "Realizat de Evolve Software Solutions"
+    }
 }

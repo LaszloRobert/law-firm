@@ -20,7 +20,8 @@ module.exports = {
       xl: "1700px",
     },
     backgroundImage: {
-      "hero-pattern": "url('/src/assets/hero-bg.png')"
+      "hero-pattern": "url('/src/assets/hero-bg.png')",
+      "maps": "url('/src/assets/maps.png')"
     }
   },
   plugins: [
