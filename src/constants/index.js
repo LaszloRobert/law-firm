@@ -1,41 +1,36 @@
 import { raluca, victor, avocat1, avocat2 } from "../assets"
 export const languages = [
-    {
-        code: 'ro',
-        country_code: "RO"
-    },
-    {
-        code: "gb",
-        country_code: "GB"
-    }
+    { code: 'ro', name: 'Romanian' },
+    { code: 'gb', name: 'English' },
+    { code: 'hu', name: 'Hungarian' },
 ]
 
 
 //This file is to match the "title" with the id from languages. Is used to for enumeration purpouse.
 //id-unique id assigned to list etc.
 //title - id that must match with the id from languages folder.
-export const navLinks = [
-    {
-        id: "home",
-        languageID: "Navbar.Home",
-    },
-    {
-        id: "about",
-        languageID: "Navbar.About",
-    },
-    {
-        id: "services",
-        languageID: "Navbar.Services",
-    },
-    {
-        id: "team",
-        languageID: "Navbar.Team",
-    },
-    {
-        id: "contact",
-        languageID: "Navbar.Contact",
-    }
-];
+// export const navLinks = [
+//     {
+//         id: "home",
+//         languageID: "Navbar.Home",
+//     },
+//     {
+//         id: "about",
+//         languageID: "Navbar.About",
+//     },
+//     {
+//         id: "services",
+//         languageID: "Navbar.Services",
+//     },
+//     {
+//         id: "team",
+//         languageID: "Navbar.Team",
+//     },
+//     {
+//         id: "contact",
+//         languageID: "Navbar.Contact",
+//     }
+// ];
 
 export const team = [
     {
@@ -68,3 +63,14 @@ export const team = [
     }
 ]
 
+
+// export const services = [
+//     {
+//         languageID: "Services.Service1",
+//         id: "service1",
+//     },
+//     {
+//         languageID: "Services.Service2",
+//         id: "service2",
+//     }
+// ]

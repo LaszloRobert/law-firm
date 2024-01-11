@@ -1,14 +1,130 @@
 {
-    "Navbar": {
-        "Home": "Acasa",
-        "About": "Despre",
-        "Services": "Servicii",
-        "Team": "Echipa",
-        "Contact": "Contact",
-        "Appointment": "Programare",
-        "Contact_Location": "Sediu"
+    "Navbar": [
+        {
+            "id": "home",
+            "name": "Acasa"
+        },
+        {
+            "id": "about",
+            "name": "Despre"
+        },
+        {
+            "id": "services",
+            "name": "Servicii"
+        },
+        {
+            "id": "contact",
+            "name": "Contact"
+        },
+        {
+            "id": "team",
+            "name": "Echipa"
+        }
+    ],
+    "Appointment": {
+        "id": "appointment",
+        "name": "Programare"
     },
     "Footer": {
         "Developed": "Realizat de Evolve Software Solutions"
+    },
+    "SectionTitles": {
+        "servicesTitle": "Servicii",
+        "aboutTitle": "Despre noi"
+    },
+    "Services": [
+        {
+            "id": "service1",
+            "title": "Consultanță juridică generală",
+            "description": "Societatea noastră oferă o arie variată de servicii de consultanță juridică, atât în beneficiul  societăților comerciale și instituțiilor publice, cât și al persoanelor fizice.\n Modalitățile concrete de consultanță juridică acordate de către societate îmbracă atât forma consultanței juridice cu caracter permanent, cât și consultanță juridică punctuală, asupra unei probleme specifice"
+        },
+        {
+            "id": "service2",
+            "title": "Contracte",
+            "description": "\u2022 asistență juridică și reprezentare în fața instanțelor de judecată, în litigii născute din executarea, anularea, rezoluțiunea sau rezilierea unui contract \n\u2022 asistență juridică specializată în etapa negocierii contractelor civile și comerciale\n\u2022redactare promisiuni unilaterale și bilaterale de vânzare, drafturi contracte de vânzare\n\u2022redactare contracte de locațiune, antrepriză, prestări servicii\n\u2022asistență calificată în fața notarului public la încheierea oricărui tip de act juridic, precum și în fața instituțiilor financiar-bancare, la încheierea contractelor de credit."
+        },
+        {
+            "id": "service3",
+            "title": "Retrocedarea imobilelor preluate abuziv",
+            "description": "\u2022reconstituirea și constituirea dreptului de proprietate privată asupra terenurilor, în baza Legii nr. 18/1991 privind fondul funciar\n\u2022măsuri reparatorii pentru persoanele fizice și moștenitorii acestora, ale căror imobile cu destinația de locuință au trecut în proprietatea statului, în temeiul Legii nr. 113/1995\n\u2022măsuri reparatorii acordate pentru imobilele preluate în mod abuziv de stat, sau de orice alte persoane juridice, în perioada 6 martie 1945 – 22 decembrie 1989, în baza Legii 10/2001."
+        },
+        {
+            "id": "service4",
+            "title": "Acțiuni de carte funciară",
+            "description": "\u2022acțiunea în prestație tabulară\n\u2022acțiunea în prestație tabulară\n\u2022acțiunea în justificare tabulară."
+        },
+        {
+            "id": "service5",
+            "title": "Succesiuni",
+            "description": "\u2022asistență juridică și reprezentare în procedura succesorală notarială\n\u2022asistență juridică și reprezentare în procedura succesorală desfășurată în fața instanțelor de judecată\n\u2022asistență juridică și reprezentare în procedura partajului succesoral, convențional sau judiciar\n\u2022consultanță specializată pentru întocmirea diferitelor forme ale testamentului."
+        },
+        {
+            "id": "service6",
+            "title": "Dreptul familiei",
+            "description": "\u2022asistență calificată în procedura divorțului, în fața notarului public sau a instanțelor de judecată\n\u2022lichidarea comunității matrimoniale, în procedură contencioasă sau necontencioasă, asistență juridică și reprezentare în operațiunea de partajare a bunurilor comune\n\u2022asistență juridică și reprezentare în procedurile privitoare la minori: încredințarea minorilor, programul de legături personale cu minorii al părintelui nerezident, pensia de întreținere cuvenită minorilor"
+        },
+        {
+            "id": "service7",
+            "title": "Fapte juridice licite si ilicite",
+            "description": "Asistență juridică și reprezentare în litigii izvorâte din:\n\u2022răspundere civilă delictuală\n\u2022gestiune de afaceri\n\u2022plată nedatorată\n\u2022îmbogățire fără justă cauză"
+        },
+        {
+            "id": "service8",
+            "title": "Drepturi reale",
+            "description": "\u2022consultanță juridică, asistență juridică și reprezentare pentru apărarea dreptului de proprietate privată, în cadrul acțiunilor în revendicare, grănițuire, precum și al acțiunii negatorii\n\u2022apărarea posesiei ca stare de fapt\n\u2022apărarea dezmembrămintelor dreptului de proprietate privată\n\u2022moduri de dobândire a dreptului de proprietate privată, prin uzucapiune și accesiune imobiliară, naturală și artificială\n\u2022asistență juridică și reprezentare în materia exproprierii, pentru cauză de utilitate publică"
+        },
+        {
+            "id": "service9",
+            "title": "Proceduri speciale",
+            "description": "\u2022măsuri de ocrotire judiciară (consilierea judiciară, tutela specială și mandatul de ocrotire)\n\u2022procedura de declarare a morții\n\u2022măsuri asiguratorii și provizorii\n\u2022ordonanță președințială\n\u2022ordonanță de plată\n\u2022cerere cu valoare redusă\n\u2022evacuarea din imobilele folosite sau ocupate fără drept\n\u2022cauțiunea judiciară"
+        },
+        {
+            "id": "service10",
+            "title": "Drept financiar-bancar",
+            "description": "\u2022consultanță, asistență juridică și reprezentare în materia clauzelor abuzive din contractele încheiate cu instituțiile financiar-bancare\n\u2022acordarea de consultanță privind activitatea bancară\n\u2022consultanță de specialitate în materie de leasing financiar și operațional\n\u2022consultanță de specialitate în materie de leasing financiar și operațional"
+        },
+        {
+            "id": "service11",
+            "title": "GDPR",
+            "description": [
+                "\u2022informare legislativă completă cu privire la prevederile Regulamentului UE nr. 2016/697 al Parlamentului European și al Consiliului din 27 aprilie 2016, referitare la protecţia persoanelor fizice, în ceea ce priveşte prelucrarea datelor cu caracter personal şi privind libera circulaţie a acestor date",
+                "\n\u2022audit GDPR:",
+                "\n1)redactarea raportului de evaluare a operatorului, a documentelor de resurse umane",
+                "\n2)redactarea acordurilor cu persoanele împuternicite și operatorii asociați",
+                "\n3)prelucrarea de date și întocmirea evidențelor",
+                "\n4)instruirea presonalului",
+                "\nasistență juridică și reprezentare în fața Autorității Naționale de Protecție a Datelor cu Caracter Personal și a instanțelor de judecată"
+            ]
+        },
+        {
+            "id": "service12",
+            "title": "Drept penal",
+            "description": "\u2022asistență juridică și reprezentare în fața organelor de urmărire penală și a instanțelor de judecată, în toate etapele procesului penal"
+        },
+        {
+            "id": "service13",
+            "title": "Drept contravențional",
+            "description": "\u2022asistență juridică și reprezentare în procedura de contestare a proceselor-verbale contravenționale și a sancțiunilor contravenționale conținute de acestea"
+        },
+        {
+            "id": "service14",
+            "title": "Drept societar",
+            "description": "\u2022asistență juridică privind înființarea, funcționarea, dizolvarea lichidarea, reorganizarea și încetarea societăților comerciale"
+        },
+        {
+            "id": "service15",
+            "title": "Dreptul muncii",
+            "description": [
+                "\u2022asistență în procedura disciplinară",
+                "\n\u2022medierea conflictelor de muncă",
+                "\n\u2022contestarea sancțiunilor disciplinare",
+                "\n\u2022asistență juridică și reprezentare în proceduri judiciare legate de accidente de muncă, concedieri abuzive și recuperarea prejudiciilor"
+            ]
+        }
+    ],
+    "GetInTouch": {
+        "Name": "Nume",
+        "Email": "Email",
+        "Message": "Mesaj"
     }
 }

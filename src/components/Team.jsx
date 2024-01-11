@@ -10,7 +10,7 @@ const Team = () => {
             <motion.div variants={textVariant(0)} >
                 <h2 className='mb-8 text-center text-4xl tracking-tight font-extrabold text-gray-900'>Echipa</h2>
             </motion.div>
-            <div className='grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+            <div className='grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 overflow-x-hidden'>
                 {team.map((person, index) => (
                     <TeamCard key={index} index={index} person={person} />
                 ))}

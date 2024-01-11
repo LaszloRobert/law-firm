@@ -1,19 +1,42 @@
 import React from 'react'
+import { SectionWrapper } from '../hoc'
+import { useTranslation } from 'react-i18next'
+import { aboutus } from '../assets'
+import { style } from '../style'
+import { motion } from 'framer-motion'
+import { slideIn } from '../utils/motion'
 
 const About = () => {
+    const { t } = useTranslation();
     return (
-        <section>
-            <span className='hash-span' id='about'>
-                &nbsp;
-            </span>
-
-            <div>
-                Where does it come from?
-                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-
-                The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</div>
-        </section>
+        <div className='max-w-7xl mx-auto'>
+            <h1 className={`${style.sectionTitles} section-title-underline`}>{t("SectionTitles.aboutTitle")}</h1>
+            <div className='sm:flex-row flex-col flex justify-center items-center overflow-hidden'>
+                <motion.div
+                    variants={slideIn("left", "tween", 0.2, 1)}
+                >
+                    <h2 className='text-[30px] mb-3'>Welcome to out website</h2>
+                    <p
+                        className='text-[20px] leading-8 text-[#666]'
+                    >
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia omnis temporibus sint accusamus, recusandae a magnam, eligendi molestias adipisci quibusdam quos. Ullam saepe nisi reiciendis? Architecto dolore nam tenetur modi!
+                    </p>
+                </motion.div>
+                <motion.div
+                    className=''
+                    variants={slideIn("right", "tween", 0.2, 1)}
+                >
+                    <img
+                        src={aboutus}
+                        alt="aboutImage"
+                        className='w-full h-auto rounded-xl shadow-lg ml-10'
+                    />
+                </motion.div>
+            </div>
+        </div>
     )
+
 }
 
-export default About
+export default SectionWrapper(About, 'about')
+

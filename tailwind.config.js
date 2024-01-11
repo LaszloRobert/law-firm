@@ -5,9 +5,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#AF7F42",
-        secondary: "#00f6ff",
-        dimWhite: "rgba(255, 255, 255, 0.7)",
+        // primary: "#AF7F42",
+        // secondary: "black",
+        // tertiary: "#AF7F42",
+        // sectionBg: "#FFF8F0",
+        primary: "#e7e7e7",
+        secondary: "#af7f42",
+        tertiary: "black",
+        sectionBg: "#FFF8F0",
+        hover: "#9c8765",
+
+        navBarBg: 'rgba(255, 255, 255, 0.2)',
         dimBlue: "rgba(9, 151, 124, 0.1)",
       },
     },

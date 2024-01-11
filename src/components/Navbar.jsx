@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { navLinks } from '../constants'
 import { useTranslation } from 'react-i18next'
 import ReactCountryFlag from "react-country-flag"
 import i18next from 'i18next'
-import { style } from '../style'
+import { languages } from '../constants'
 import { close, menu } from "../assets"
 import { getCalApi } from "@calcom/embed-react";
 
 
 const Navbar = () => {
+    const { t, ready } = useTranslation();
+
     const [currentLanguageCode, setCurrentLanguageCode] = useState(
         document.cookie.split("; ").find((row) => row.startsWith("i18next"))?.split("=")[1] ?? "ro")
     const [active, setActive] = useState('');
     const [toggle, setToggle] = useState(false);
-
     //change nav color when scrolling
     const [color, setColor] = useState(false);
 
-    const { t } = useTranslation();
+    const navLinks = t("Navbar", { returnObjects: true })
 
     const handleLanguageChange = (language) => {
         setCurrentLanguageCode(language);
@@ -48,13 +48,17 @@ const Navbar = () => {
         })();
     }, []);
 
+    while (!ready) {
+        return null;
+    }
+
     return (
-        <nav className={`${color ? "bg-zinc-900" : "bg-transparent"} w-full top-0 fixed ease-in-out duration-700`}>
+        <nav className={`${color ? "bg-zinc-900" : "bg-navBarBg"} w-full top-0 fixed ease-in-out duration-700 z-20`}>
             <div className='w-full flex justify-between items-center mx-auto max-w-7xl py-3 px-3'>
                 <div className='flex'>
                     <Link
                         to='/'
-                        className='text-primary font-medium text-[1.4rem]'
+                        className='text-primary font-medium text-[1.4rem] relative'
                         onClick={() => { setActive(''); window.scrollTo(0, 0) }}
                     >
                         Rusa si Asociatii
@@ -65,20 +69,22 @@ const Navbar = () => {
                     {navLinks.map((link) => (
                         <li
                             key={link.id}
-                            className={`${active === link.id ? "text-red-100" : "text-primary"} font-medium text-[1.1rem] cursor-pointer hover:animate-pulse 
-                                                                 hover:text-gray-200`}
+                            className={`${active === link.id ? "text-secondary" : "text-primary"} text-[1rem] cursor-pointer hover:text-secondary transition-colors duration-200`}
                             onClick={() => setActive(link.id)}
                         >
-                            <a href="#about" className="">{t(link.languageID)}</a>
+                            <a href={`#${link.id}`} className='relative'>{t(link.name)}</a>
                         </li>
                     ))}
                     <li key="appointment">
-                        <button data-cal-link="robert-laszlo/programare" data-cal-config='{"layout":"month_view"}'
-                            className=' text-primary font-medium text-[1.1rem] cursor-pointer hover:animate-pulse hover:text-gray-200'
+                        <button
+                            data-cal-link="robert-laszlo/programare"
+                            data-cal-config='{"layout":"month_view"}'
+                            className=' text-secondary font-medium border border-secondary px-3 py-1  text-[1.2rem] cursor-pointer hover:bg-secondary hover:text-primary transition-colors duration-200'
                         >
-                            {t('Navbar.Appointment')}
+                            {t("Appointment.name")}
                         </button>
                     </li>
+                    {/* country flags */}
                     <li key="countries">
                         <button id="countryDropdown"
                             data-dropdown-toggle="dropdown"
@@ -89,15 +95,22 @@ const Navbar = () => {
                         {/* Dropdown Menu */}
                         <div id="dropdown" className='hidden'>
                             <ul aria-labelledby="countryDropdown">
-                                <li onClick={() => handleLanguageChange(currentLanguageCode === "ro" ? "gb" : "ro")}>
-                                    <ReactCountryFlag
-                                        countryCode={currentLanguageCode === "ro" ? "gb" : "ro"}
-                                        svg
-                                    />
-                                </li>
+                                {languages.filter(language => language.code !== currentLanguageCode).map((language) => (
+                                    <li key={language.code}
+                                        onClick={() => handleLanguageChange(language.code)}
+
+                                    >
+                                        <ReactCountryFlag
+                                            countryCode={language.code}
+                                            svg
+                                        />
+                                    </li>
+                                )
+                                )}
                             </ul>
 
                         </div>
+
                     </li>
                 </ul>
 
@@ -130,12 +143,18 @@ const Navbar = () => {
                                 key={link.id}
                                 className="py-3 border-b border-b-[#4b4b4b] text-[#c69c67]"
                             >
-                                <a href="#about" className="">{t(link.languageID)}</a>
+                                <a href={`#${link.id}`} className='relative'>{t(link.name)}</a>
                             </li>
                         ))}
-                        <li className='flex gap-3 mt-3 cursor-pointer'>
-                            <ReactCountryFlag countryCode='ro' svg onClick={() => handleLanguageChange(currentLanguageCode === "ro" ? "gb" : "ro")} />
-                            <ReactCountryFlag countryCode='gb' svg onClick={() => handleLanguageChange(currentLanguageCode === "ro" ? "gb" : "ro")} />
+                        <li className='flex gap-3 mt-3 cursor-pointer outline-none'>
+                            {languages.map((language) => (
+                                <ReactCountryFlag
+                                    countryCode={language.code}
+                                    onClick={() => handleLanguageChange(language.code)}
+                                    svg
+                                />
+                            )
+                            )}
                         </li>
                     </ul>
                 </div>

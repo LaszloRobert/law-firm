@@ -1,0 +1,24 @@
+{
+    "Navbar": [
+        {
+            "id": "home",
+            "name": "Főoldal"
+        },
+        {
+            "id": "about",
+            "name": "Despre"
+        },
+        {
+            "id": "services",
+            "name": "Servicii"
+        },
+        {
+            "id": "contact",
+            "name": "Kapcsolat"
+        },
+        {
+            "id": "team",
+            "name": "Echipa"
+        }
+    ]
+}

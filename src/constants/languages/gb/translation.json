@@ -1,13 +1,52 @@
 {
-    "Navbar": {
-        "Home": "Home",
-        "About": "About",
-        "Services": "Services",
-        "Team": "Team",
-        "Contact": "Contact",
-        "Appointment": "Appointment"
+    "Navbar": [
+        {
+            "id": "home",
+            "name": "Home"
+        },
+        {
+            "id": "about",
+            "name": "About"
+        },
+        {
+            "id": "services",
+            "name": "Services"
+        },
+        {
+            "id": "team",
+            "name": "Team"
+        },
+        {
+            "id": "contact",
+            "name": "Contact"
+        }
+    ],
+    "Appointment": {
+        "id": "appointment",
+        "name": "Appointment"
     },
     "Footer": {
         "Developed": "Created by Evolve Software Solutions"
+    },
+    "SectionTitles": {
+        "servicesTitle": "Services",
+        "aboutTitle": "About"
+    },
+    "Services": [
+        {
+            "id": "service1",
+            "title": "1.English",
+            "description": "Description"
+        },
+        {
+            "id": "service2",
+            "title": "2. English",
+            "description": "Description"
+        }
+    ],
+    "GetInTouch": {
+        "Name": "Name",
+        "Email": "Email",
+        "Message": "Message"
     }
 }

@@ -3,6 +3,8 @@ import React from 'react'
 import { style } from '../style'
 import { motion, useInView } from "framer-motion"
 import { location, phone, email } from "../assets"
+import emailjs from '@emailjs/browser'
+import { useTranslation } from "react-i18next";
 
 const variants = {
     initial: {
@@ -18,11 +20,51 @@ const variants = {
 }
 
 const Contact = () => {
+    const { t } = useTranslation();
+    const [form, setForm] = useState({
+        name: '',
+        email: '',
+        message: '',
+    })
+    const [loading, setLoading] = useState(false)
+
+    const handleChange = (e) => {
+
+        const { name, value } = e.target
+        setForm({ ...form, [name]: value })
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setLoading(true);
+
+        emailjs.send("service_7uw4dh8", "template_4ebf4wm",
+            {
+                from_name: form.name,
+                email: form.email,
+                message: form.message
+            },
+            'zgKOkvUsUNGWwXH2z')
+            .then(() => {
+                setLoading(false)
+                alert("I'll back to you as soon as posibil")
+                setForm({
+                    name: '',
+                    email: '',
+                    message: '',
+                })
+            },
+                (error) => {
+                    setLoading(false)
+                    alert(error)
+                    alert("Something went wrong");
+                })
+    }
 
     const ref = useRef()
     const isInView = useInView(ref, { margin: "-100px" });
     return (
-        <motion.section ref={ref} id="Contact" className='bg-[#ebd2ba] h-full w-full relative pt-4' initial="initial" whileInView="animate" variants={variants}>
+        <motion.section ref={ref} id="Contact" className='bg-sectionBg h-full w-full relative pt-4' initial="initial" whileInView="animate" variants={variants}>
             <h1 className="text-center text-[40px]">Contact</h1>
             <div className='flex justify-center gap-10 mt-7 h-[35vh]' variants={variants}>
                 <div id="map" className="w-[50%]">
@@ -81,9 +123,9 @@ const Contact = () => {
             </div>
 
             <div id='form' className="mt-10 flex justify-center items-center">
-                <motion.div
+                {/* <motion.div
                     className='absolute mx-auto  stroke-primary'
-                    initial={{ opacity: 1 }}
+                    initial={{ opacity: 0 }}
                     whileInView={{ opacity: 0 }}
                     transition={{ delay: 3, duration: 1 }}
                 >
@@ -98,17 +140,45 @@ const Contact = () => {
 
                         </motion.path>
                     </svg>
-                </motion.div>
+                </motion.div> */}
                 <motion.form
                     className='flex flex-col gap-5 w-[450px]'
-                    initial={{ opacity: 0 }}
+                    onSubmit={handleSubmit}
+                    initial={{ opacity: 1 }}
                     animate={isInView && { opacity: 1 }}
                     transition={{ delay: 4, duration: 1 }}
                 >
-                    <input type='text' required placeholder='Name' className={style.input} />
-                    <input type='email' required placeholder='Email' className={style.input} />
-                    <textarea rows={8} placeholder='Message' className={style.input} />
-                    <button className='p-3 bg-primary border-none cursor-pointer font-medium'>Submit</button>
+                    <input
+                        type='text'
+                        name="name"
+                        value={form.name}
+                        placeholder={t('Contact.Name')}
+                        className={style.input}
+                        onChange={handleChange}
+                        required
+                    />
+                    <input
+                        type='email'
+                        name="email"
+                        value={form.email}
+                        placeholder={t('Contact.Email')}
+                        className={style.input}
+                        onChange={handleChange}
+                        required
+                    />
+                    <textarea
+                        rows={8}
+                        name="message"
+                        value={form.message}
+                        placeholder={t('Contact.Message')}
+                        className={style.input}
+                        onChange={handleChange}
+                    />
+                    <button
+                        type="submit"
+                        className='p-3 bg-primary border-none cursor-pointer font-medium'>
+                        {loading ? "Seding..." : "Send"}
+                    </button>
                 </motion.form>
             </div>
         </motion.section >
