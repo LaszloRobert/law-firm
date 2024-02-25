@@ -34,32 +34,36 @@ export const languages = [
 
 export const team = [
     {
-        id: "raluca",
-        title: "Avocat Raluca Plesan",
-        phone: "0736116983",
-        email: "plesan.raluca27.yahoo.com",
-        icon: raluca
-    },
-    {
         id: "victor",
-        title: "Avocat Rusa Victor",
-        phone: "0736116983",
-        email: "plesan.raluca27.yahoo.com",
+        title: "Victor Rusa",
+        phone: "0744851882",
+        email: "victor_rusa@yahoo.com",
+        description: "Avocat coordonator",
         icon: victor
     },
     {
-        id: "robert",
-        title: "Avocat Robert Laszlo",
-        phone: "0736116983",
-        email: "plesan.raluca27.yahoo.com",
-        icon: avocat1
+        id: "anca",
+        title: "Anca Rusa",
+        phone: "0748282633",
+        email: "ancarusa2016@gmail.com",
+        description: "Avocat asociat",
+        icon: raluca
     },
     {
-        id: "ion",
-        title: "Avocat Ion Gabril",
-        phone: "0736116983",
+        id: "raluca",
+        title: "Raluca Pleșan",
+        phone: "0728692179",
         email: "plesan.raluca27.yahoo.com",
-        icon: avocat2
+        description: "Avocat asociat",
+        icon: raluca
+    },
+    {
+        id: "imola",
+        title: "Imola Koncz",
+        phone: "0746077154",
+        email: "konczimola@yahoo.com",
+        description: "Avocat colaborator",
+        icon: raluca
     }
 ]
 

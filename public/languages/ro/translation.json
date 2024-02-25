@@ -2,7 +2,7 @@
     "Navbar": [
         {
             "id": "home",
-            "name": "Acasa"
+            "name": "Acasă"
         },
         {
             "id": "about",
@@ -13,26 +13,39 @@
             "name": "Servicii"
         },
         {
-            "id": "contact",
-            "name": "Contact"
-        },
-        {
             "id": "team",
             "name": "Echipa"
+        },
+        {
+            "id": "contact",
+            "name": "Contact"
         }
     ],
+    "HeroWords": [
+        "Profesionalism",
+        "Integritate",
+        "Eficiență",
+        "Comunicare"
+    ],
+    "AboutSection": {
+        "id": "about",
+        "text": "Societatea nostră apreciază integritatea, transparența și eficiența.\nPracticăm o abordare pragmatică și orientată spre rezultate, cu un angajament ferm către excelență și etică profesională.\nNe dorim să oferim întotdeauna soluții juridice adecvate, adaptate specificului fiecărui caz, asftel că urmărim o pregătire profesională continuă pentru a rămâne la curent cu ultimele modificări legislative și jurisprudențiale, precum și cu cele mai bune practici în domeniu.\nAlături de experiență, ne recomandă abordarea noastră proactivă și atenția la detalii."
+    },
     "Appointment": {
         "id": "appointment",
-        "name": "Programare"
+        "name": "PROGRAMARE"
     },
     "Footer": {
-        "Developed": "Realizat de Evolve Software Solutions"
+        "character": "©",
+        "main": "Rusa și Asociații",
+        "createdBy": "| Realizat de Evolve Software Solutions."
     },
     "SectionTitles": {
         "servicesTitle": "Servicii",
-        "aboutTitle": "Despre noi"
+        "aboutTitle": "Despre",
+        "contactTitle": "Contact"
     },
-    "Services": [
+    "ServicesSection": [
         {
             "id": "service1",
             "title": "Consultanță juridică generală",
@@ -122,9 +135,15 @@
             ]
         }
     ],
+    "AppointmentSuggestion": {
+        "id": "appointmentSuggestion",
+        "text": "Ai nevoie de consultanță sau asistență juridică?"
+    },
     "GetInTouch": {
         "Name": "Nume",
         "Email": "Email",
-        "Message": "Mesaj"
+        "Message": "Mesaj",
+        "Phone": "Telefon",
+        "Address": "Adresa"
     }
 }

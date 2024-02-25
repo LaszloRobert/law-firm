@@ -6,11 +6,11 @@
         },
         {
             "id": "about",
-            "name": "Despre"
+            "name": "Rólunk"
         },
         {
             "id": "services",
-            "name": "Servicii"
+            "name": "Szolgáltatások"
         },
         {
             "id": "contact",
@@ -18,7 +18,17 @@
         },
         {
             "id": "team",
-            "name": "Echipa"
+            "name": "Csapat"
         }
-    ]
+    ],
+    "HeroWords": [
+        "Szakszerűség",
+        "Megbízhatóság",
+        "Hatékonyság",
+        "Kommunikáció"
+    ],
+    "AppointmentSuggestion": {
+        "id": "appointmentSuggestion",
+        "text": "Szüksége van jogi tanácsadásra vagy jogi segítségre?"
+    }
 }

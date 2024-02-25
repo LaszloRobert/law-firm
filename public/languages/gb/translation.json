@@ -21,18 +21,23 @@
             "name": "Contact"
         }
     ],
+    "HeroWords": [
+        "Professionalism",
+        "Integrity",
+        "Efficiency",
+        "Communication"
+    ],
     "Appointment": {
         "id": "appointment",
         "name": "Appointment"
     },
-    "Footer": {
-        "Developed": "Created by Evolve Software Solutions"
-    },
+    "Footer": {},
     "SectionTitles": {
         "servicesTitle": "Services",
-        "aboutTitle": "About"
+        "aboutTitle": "About",
+        "contactTitle": "Contact"
     },
-    "Services": [
+    "ServicesSection": [
         {
             "id": "service1",
             "title": "1.English",
@@ -44,9 +49,15 @@
             "description": "Description"
         }
     ],
+    "AppointmentSuggestion": {
+        "id": "appointmentSuggestion",
+        "text": "Do you need legal consulting or legal assistance?"
+    },
     "GetInTouch": {
         "Name": "Name",
         "Email": "Email",
-        "Message": "Message"
+        "Message": "Message",
+        "Phone": "Phone",
+        "Address": "Address"
     }
 }

@@ -6,6 +6,7 @@ import Hero from "./Hero";
 import Services from "./Services";
 import Team from "./Team";
 import Footer from "./Footer";
+import AppointmentSuggestion from "./AppointmentSuggestion";
 
 export {
     Navbar,
@@ -15,5 +16,6 @@ export {
     Hero,
     Services,
     Team,
-    Footer
+    Footer,
+    AppointmentSuggestion
 }

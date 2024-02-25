@@ -19,5 +19,5 @@ export {
     victor,
     avocat1,
     avocat2,
-    aboutus
+    aboutus,
 }
