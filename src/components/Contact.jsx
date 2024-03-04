@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { SectionWrapper } from '../hoc'
-import { textVariant, fadeIn } from '../utils/motion'
+import { textVariant, fadeIn, slideIn } from '../utils/motion'
 import React from 'react'
 import { style } from '../style'
 import { motion, useInView } from "framer-motion"
@@ -30,36 +30,56 @@ const Contact = () => {
     const [form, setForm] = useState({
         name: '',
         email: '',
-        message: '',
+        subject: '',
         phone: '',
-        comment: ''
+        comment: '',
+        attachment: ''
     })
     const [loading, setLoading] = useState(false)
 
     const handleChange = (e) => {
-
+        console.log(e);
         const { name, value } = e.target
-        setForm({ ...form, [name]: value })
+        if (name === 'attachment') {
+            // console.log(e.target)
+            // const file = e.target.files[0];
+            // const reader = new FileReader();
+            // reader.onloadend = () => {
+            //     setForm({ ...form, [name]: reader.result });
+            // };
+            // reader.readAsDataURL(file);
+            const file = e.target.files[0];
+            const result = file.toDataURL();
+        } else {
+            setForm({ ...form, [name]: value });
+        }
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setLoading(true);
+        console.log(form)
 
-        emailjs.send("service_7uw4dh8", "template_4ebf4wm",
+        emailjs.send("service_kz9zjuf", "template_wzop37d",
             {
                 from_name: form.name,
-                email: form.email,
-                message: form.message
+                phone: form.phone,
+                email_address: form.email,
+                subject: form.subject,
+                message: form.comment,
+                attachment: form.attachment.split(",")[1]
             },
-            'zgKOkvUsUNGWwXH2z')
+            't2e_a-G-kHSqg2qF8')
             .then(() => {
                 setLoading(false)
                 alert("I'll back to you as soon as posibil")
                 setForm({
                     name: '',
                     email: '',
-                    message: '',
+                    subject: '',
+                    phone: '',
+                    comment: '',
+                    attachment: ''
                 })
             },
                 (error) => {
@@ -79,26 +99,34 @@ const Contact = () => {
             <motion.div variants={textVariant()}>
                 <h2 className={`${style.sectionTitles} section-title-underline`}>{t("SectionTitles.contactTitle")}</h2>
             </motion.div>
-            <div className="flex justify-center gap-1">
-                <div id="form" className="w-1/2">
-                    <form onSubmit={handleSubmit} className="grid grid-cols-2 grid-rows- gap-4" >
+            <div className="flex md:flex-row flex-col-reverse justify-around">
+                <motion.div
+                    id="form"
+                    variants={slideIn("left", "tween", 0.4, 1)}
+                >
+                    <form onSubmit={handleSubmit} className="grid grid-cols-2 auto-rows-min gap-4" >
                         <input className={style.inputsForm} type="text" name="name" placeholder="Name" value={form.name} onChange={handleChange} required />
                         <input className={`${style.inputsForm} justify-self-end`} type="email" name="email" placeholder="Email address" value={form.email} onChange={handleChange} required />
                         <input className={style.inputsForm} type="text" name="subject" placeholder="Subject" value={form.subject} onChange={handleChange} required />
-                        <input className={`${style.inputsForm} justify-self-end`} type="tel" name="phone" placeholder="Phone" value={form.phone} onChange={handleChange} required />
+                        <input className={`${style.inputsForm} justify-self-end`} type="text" name="phone" placeholder="Phone" value={form.phone} onChange={handleChange} required />
                         <textarea className="col-span-2 text-[14px] rounded border-1 border-gray-400 outline-none focus:ring-0 focus:border-secondary resize-none" rows="7" name="comment" placeholder="Comment" value={form.comment} onChange={handleChange} required />
-                        <input type="file" />
+                        <input type="file" className="" name="attachment" onChange={handleChange} />
+                        {/* <label className="col-span-2 w-full bg-primary text-secondary rounded-md px-4 py-2 cursor-pointer inline-block">
+                            <span>Upload a file</span>
+                            <input type="file" className="hidden" name="attachment" />
+                        </label> */}
                         <button className="bg-secondary leading-9 text-[14px] text-white w-[120px] col-start-2 justify-self-end border rounded hover:bg-white hover:text-secondary hover:scale-110 duration-200" type="submit">SUBMIT</button>
                     </form>
-                </div>
+                </motion.div>
 
-                <div id="cards"
-                    className="flex  sm:flex-col gap-4 w-1/2 flex-row sm:gap-8 justify-center items-center overflow-x-hidden"
+                <motion.div id="cards"
+                    className="flex flex-col space-y-4 md:space-y-10 md:w-[30%] w-full mb-4 overflow-x-hidden"
+                    variants={slideIn("right", "tween", 0.4, 1)}
                 >
                     <Card Icon={LocationSVG} title={t("GetInTouch.Address")} text={"Calea Dorobanților 22, Cluj-Napoca 400121"} />
                     <Card Icon={PhoneSVG} title={t("GetInTouch.Phone")} text={"+40 744 851 882"} />
                     <Card Icon={EmailSVG} title={t("GetInTouch.Email")} text={"rusa.office@yahoo.com"} />
-                </div>
+                </motion.div>
             </div >
 
             <div className="bg-title-separator-big bg-cover h-[10px] mt-20 mb-10 "></div>
@@ -112,7 +140,7 @@ const Contact = () => {
 }
 
 const Card = ({ Icon, title, text }) => (
-    <div className="flex shadow-md shadow-secondary rounded justify-around items-center h-[100px] w-[60%] p-6 duration-200 card">
+    <div className="flex  shadow-md shadow-secondary border border-secondary rounded justify-around items-center h-[100px] p-6 duration-200 card">
         <Icon
             className="w-10 h-10  text-secondary icon"
         />

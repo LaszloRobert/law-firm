@@ -10,14 +10,11 @@ const About = () => {
     const { t } = useTranslation();
     return (
         <div className='max-w-7xl mx-auto'>
-            {/* <div className="bg-aboutus-bg bg-fixed bg-cover absolute top-0 left-0 right-0 bottom-0 z-[-1] "> </div>
-            <div className="bg-contactOverlay w-[60%] h-full absolute top-0 right-0 bottom-0 left-0  z-[-1]"></div> */}
-            {/* <div className="bg-contactOverlay absolute top-0 right-0 bottom-[85%] left-[60%]  z-[-1]"></div> */}
             <h1 className={`${style.sectionTitles} section-title-underline -mt-14`}>{t("SectionTitles.aboutTitle")}</h1>
-            <div className='flex justify-between'>
+            <div className='flex sm:flex-row flex-col justify-between'>
                 <motion.div
                     variants={slideIn("left", "tween", 0.2, 1)}
-                    className='w-[50%] ml-5 mb-20'
+                    className='sm:w-[50%] w-full sm:ml-5 mb-20'
                 >
                     <p
                         className='text-[20px] text-[#3a3a3a] text-justify'
@@ -26,7 +23,7 @@ const About = () => {
                     </p>
                 </motion.div>
                 <motion.div
-                    className=''
+                    className='-mt-7'
                     variants={slideIn("right", "tween", 0.2, 1)}
                 >
                     <img
@@ -36,7 +33,7 @@ const About = () => {
                     />
                 </motion.div>
             </div>
-        </div>
+        </div >
     )
 
 }

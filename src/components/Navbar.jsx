@@ -7,7 +7,7 @@ import { languages } from '../constants'
 import { close, menu } from "../assets"
 import { getCalApi } from "@calcom/embed-react";
 import Phone from "../assets/phoneNavbar.svg?react"
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const Navbar = () => {
     const { t, ready } = useTranslation();
@@ -20,7 +20,7 @@ const Navbar = () => {
     const [color, setColor] = useState(false);
 
     const navLinks = t("Navbar", { returnObjects: true })
-    console.log(navLinks)
+
     const handleLanguageChange = (language) => {
         setCurrentLanguageCode(language);
         i18next.changeLanguage(language);
@@ -40,67 +40,53 @@ const Navbar = () => {
     useEffect(() => {
         (async function () {
             const cal = await getCalApi();
-            cal("ui", {
-                theme: "dark",
-                styles: {
-                    branding: { brandColor: "#000000" }
-                }
-            });
+            cal("ui", { "theme": "dark", "styles": { "branding": { "brandColor": "#000000" } }, "hideEventTypeDetails": false, "layout": "month_view" });
         })();
-    }, []);
+    }, [])
 
     while (!ready) {
         return null;
     }
 
-    const containerVariants = {
-        initial: {
-            opacity: 1,
-            y: 0,
-        },
-        scrolled: {
-            opacity: 0.5, // Example transformation, adjust as needed
-            y: -50, // Moves the container up by 50px, adjust as needed
-            transition: {
-                duration: 0.5,
-                ease: "easeInOut",
-            },
-        },
-    };
-
     return (
-        <motion.nav
+        <nav
             className={`${color ? "bg-zinc-900" : "bg-navBarBg"} bg-navBarBg w-full top-0 fixed ease-in-out duration-700 z-20`}
         >
-            <motion.div
-                className='max-w-7xl mx-auto'
-                variants={containerVariants}
-            >
-                <motion.ul
-                    className={` flex gap-3 items-center justify-end py-2 ${color ? "hidden" : "relative"}`}
 
-                >
-                    <li className=''>
-                        <Phone
-                            className='w-[1.5rem] text-secondary h-auto object-contain'
-                        />
-                    </li>
-                    <li>
-                        <span className='text-white text-[0.9rem]'>+40 744 851 882</span>
-                    </li>
-                    <li>
-                        <div className='w-[2px] h-[40px] separator-bg'></div>
-                    </li>
-                    <li key="appointment">
-                        <button
-                            data-cal-link="robert-laszlo/programare"
-                            data-cal-config='{"layout":"month_view"}'
-                            className=' text-primary bg-secondary rounded-sm px-3 py-2 text-[0.9rem] font-thin tracking-wider cursor-pointer hover:bg-white hover:text-secondary hover:scale-110  duration-200'
+            <div
+                className='max-w-7xl mx-auto'
+            >
+                <AnimatePresence>
+                    {!color && (
+                        <motion.div className='hidden sm:block'
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20, transition: { duration: 0.5 } }}
                         >
-                            {t("Appointment.name")}
-                        </button>
-                    </li>
-                </motion.ul>
+                            <ul className='flex gap-3 items-center justify-end py-2 relative'>
+                                <li>
+                                    <Phone className='w-[1.5rem] text-secondary h-auto object-contain' />
+                                </li>
+                                <li>
+                                    <span className='text-white text-[0.9rem]'>+40 744 851 882</span>
+                                </li>
+                                <li>
+                                    <div className='w-[2px] h-[40px] separator-bg'></div>
+                                </li>
+                                <li key="appointment">
+                                    <button
+                                        data-cal-namespace=""
+                                        data-cal-link="rusasiasociatii/30min"
+                                        data-cal-config='{"layout":"month_view"}'
+                                        className='text-primary bg-secondary rounded-sm px-3 py-2 text-[0.9rem] font-thin tracking-wider cursor-pointer hover:bg-white hover:text-secondary hover:scale-110 duration-200'
+                                    >
+                                        {t("Appointment.name")}
+                                    </button>
+                                </li>
+                            </ul>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
                 <div className='w-full flex justify-between items-center  py-3 px-3'>
                     <div className='flex'>
                         <Link
@@ -188,7 +174,23 @@ const Navbar = () => {
                                     <a href={`#${link.id}`} className='relative'>{t(link.name)}</a>
                                 </li>
                             ))}
-                            <li className='flex gap-3 mt-3 cursor-pointer outline-none'>
+                            <li key="appointmentMobile"
+                                className='text-center py-3'
+                            >
+                                <button
+                                    data-cal-namespace=""
+                                    data-cal-link="rusasiasociatii/30min"
+                                    data-cal-config='{"layout":"month_view"}'
+                                    className='text-primary bg-secondary rounded-sm px-3 py-2 text-[0.9rem] font-thin tracking-wider cursor-pointer hover:bg-white hover:text-secondary hover:scale-110 duration-200'
+                                >
+                                    {t("Appointment.name")}
+                                </button>
+                            </li>
+                            <li className='flex items-center justify-center gap-2 p-2'>
+                                <Phone className='w-[1.5rem] text-secondary h-auto object-contain' />
+                                <span className='text-white text-[0.9rem]'>+40 744 851 882</span>
+                            </li>
+                            <li className='flex items-center justify-center gap-3 p-2'>
                                 {languages.map((language) => (
                                     <ReactCountryFlag
                                         countryCode={language.code}
@@ -198,11 +200,13 @@ const Navbar = () => {
                                 )
                                 )}
                             </li>
+
                         </ul>
                     </div>
                 </div>
-            </motion.div>
-        </motion.nav >
+            </div>
+
+        </nav >
     )
 }
 

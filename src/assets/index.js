@@ -3,11 +3,12 @@ import close from "./close.svg"
 import location from "./location.svg"
 import email from "./email.svg"
 import phone from "./phone.svg"
-import raluca from "./raluca.png"
-import victor from "./victor.png"
-import avocat1 from "./avocat1.png"
-import avocat2 from "./avocat2.png"
-import aboutus from "./aboutus.png"
+import raluca from "./raluca.webp"
+import victor from "./victor.webp"
+import anca from "./anca.webp"
+import imola from "./imola.webp"
+import aboutus from "./aboutus.webp"
+import titleSeparator from "./title-separator-small.png"
 
 export {
     menu,
@@ -17,7 +18,8 @@ export {
     phone,
     raluca,
     victor,
-    avocat1,
-    avocat2,
+    anca,
+    imola,
     aboutus,
+    titleSeparator
 }
