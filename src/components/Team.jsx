@@ -4,8 +4,8 @@ import { motion } from 'framer-motion'
 import { SectionWrapper } from '../hoc'
 import { textVariant, fadeIn } from '../utils/motion'
 import { style } from '../style'
-// import TitleSeparator from "../assets/title-separator-small.svg?react"
-import { titleSeparator } from "../assets"
+import TitleSeparator from "../assets/title-separator-small.svg?react"
+// import { titleSeparator } from "../assets"
 
 const Team = () => {
     return (
@@ -14,10 +14,8 @@ const Team = () => {
                 className='flex flex-col items-center mb-[60px]'
             >
                 <h2 className={`${style.sectionTitles}`}>Echipa</h2>
-                {/* <TitleSeparator className="text-red-500" />
-                 */}
+                <TitleSeparator className="-mt-[145px] -mb-[100px] text-secondary" />
 
-                <img src={titleSeparator} alt="titleSeparator" className="h-2" />
             </motion.div>
             <div className='grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 overflow-x-hidden'>
                 {team.map((person, index) => (

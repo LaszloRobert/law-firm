@@ -3,27 +3,31 @@ import { SectionWrapper } from '../hoc'
 import { useTranslation } from 'react-i18next'
 import { style } from '../style'
 import { motion } from 'framer-motion'
-import { slideIn } from '../utils/motion'
+import { slideIn, textVariant } from '../utils/motion'
 import { aboutus } from "../assets"
+import TitleSeparator from "../assets/title-separator-small.svg?react"
 
 const About = () => {
     const { t } = useTranslation();
     return (
         <div className='max-w-7xl mx-auto'>
-            <h1 className={`${style.sectionTitles} section-title-underline -mt-14`}>{t("SectionTitles.aboutTitle")}</h1>
+            <motion.div variants={textVariant()}>
+                <h1 className={`${style.sectionTitles} -mt-14`}>{t("SectionTitles.aboutTitle")}</h1>
+                <TitleSeparator className="-mt-[145px] -mb-[100px] w-full text-secondary" />
+            </motion.div>
             <div className='flex sm:flex-row flex-col justify-between'>
                 <motion.div
                     variants={slideIn("left", "tween", 0.2, 1)}
-                    className='sm:w-[50%] w-full sm:ml-5 mb-20'
+                    className='md:w-[50%] w-full md:ml-5'
                 >
                     <p
-                        className='text-[20px] text-[#3a3a3a] text-justify'
+                        className='text-[20px] text-[#645858] text-justify'
                     >
                         {t("AboutSection.text")}
                     </p>
                 </motion.div>
                 <motion.div
-                    className='-mt-7'
+                    className='-mt-7 hidden md:flex'
                     variants={slideIn("right", "tween", 0.2, 1)}
                 >
                     <img

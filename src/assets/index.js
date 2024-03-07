@@ -5,10 +5,10 @@ import email from "./email.svg"
 import phone from "./phone.svg"
 import raluca from "./raluca.webp"
 import victor from "./victor.webp"
-import anca from "./Anca.webp"
+import anca from "./anca.webp"
 import imola from "./imola.webp"
 import aboutus from "./aboutus.webp"
-import titleSeparator from "./title-separator-small.png"
+// import titleSeparator from "./title-separator-small.png"
 
 export {
     menu,
@@ -20,6 +20,5 @@ export {
     victor,
     anca,
     imola,
-    aboutus,
-    titleSeparator
+    aboutus
 }

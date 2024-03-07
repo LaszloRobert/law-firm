@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import ReactCountryFlag from "react-country-flag"
 import i18next from 'i18next'
 import { languages } from '../constants'
 import { close, menu } from "../assets"
-import { getCalApi } from "@calcom/embed-react";
 import Phone from "../assets/phoneNavbar.svg?react"
 import { AnimatePresence, motion } from 'framer-motion';
+import AppointmentButton from './reusableComponents/AppointmentButton'
+import { style } from '../style'
 
 const Navbar = () => {
     const { t, ready } = useTranslation();
-
     const [currentLanguageCode, setCurrentLanguageCode] = useState(
         document.cookie.split("; ").find((row) => row.startsWith("i18next"))?.split("=")[1] ?? "ro")
     const [active, setActive] = useState('');
@@ -36,13 +36,6 @@ const Navbar = () => {
     }
 
     window.addEventListener('scroll', changeColor);
-
-    useEffect(() => {
-        (async function () {
-            const cal = await getCalApi();
-            cal("ui", { "theme": "dark", "styles": { "branding": { "brandColor": "#000000" } }, "hideEventTypeDetails": false, "layout": "month_view" });
-        })();
-    }, [])
 
     while (!ready) {
         return null;
@@ -74,14 +67,7 @@ const Navbar = () => {
                                     <div className='w-[2px] h-[40px] separator-bg'></div>
                                 </li>
                                 <li key="appointment">
-                                    <button
-                                        data-cal-namespace=""
-                                        data-cal-link="rusasiasociatii/30min"
-                                        data-cal-config='{"layout":"month_view"}'
-                                        className='text-primary bg-secondary rounded-sm px-3 py-2 text-[0.9rem] font-thin tracking-wider cursor-pointer hover:bg-white hover:text-secondary hover:scale-110 duration-200'
-                                    >
-                                        {t("Appointment.name")}
-                                    </button>
+                                    <AppointmentButton className={style.navbarProgrammingButton} />
                                 </li>
                             </ul>
                         </motion.div>
@@ -177,14 +163,7 @@ const Navbar = () => {
                             <li key="appointmentMobile"
                                 className='text-center py-3'
                             >
-                                <button
-                                    data-cal-namespace=""
-                                    data-cal-link="rusasiasociatii/30min"
-                                    data-cal-config='{"layout":"month_view"}'
-                                    className='text-primary bg-secondary rounded-sm px-3 py-2 text-[0.9rem] font-thin tracking-wider cursor-pointer hover:bg-white hover:text-secondary hover:scale-110 duration-200'
-                                >
-                                    {t("Appointment.name")}
-                                </button>
+                                <AppointmentButton className={style.navbarProgrammingButton} />
                             </li>
                             <li className='flex items-center justify-center gap-2 p-2'>
                                 <Phone className='w-[1.5rem] text-secondary h-auto object-contain' />

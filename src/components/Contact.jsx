@@ -10,6 +10,9 @@ import { useTranslation } from "react-i18next";
 import LocationSVG from "../assets/location.svg?react"
 import EmailSVG from "../assets/email.svg?react"
 import PhoneSVG from "../assets/phone.svg?react"
+import { initializeApp } from "firebase/app";
+import { getStorage } from "firebase/storage";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 
 const variants = {
@@ -26,6 +29,52 @@ const variants = {
 }
 
 const Contact = () => {
+    const [uploadProgress, setUploadProgress] = useState(0);
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyCMsPMpmHs0S0E2zRYWjtVeWyOsXswheyo",
+        authDomain: "rusasiasociatii.firebaseapp.com",
+        projectId: "rusasiasociatii",
+        storageBucket: "rusasiasociatii.appspot.com",
+        messagingSenderId: "705499341167",
+        appId: "1:705499341167:web:51ecdccab6d443a3dac89a",
+        measurementId: "G-SDF6CDPGLQ"
+    };
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    // Get a reference to the storage service
+    const storage = getStorage(app);
+    // const analytics = getAnalytics(app);
+    const uploadFile = (file) => {
+        return new Promise((resolve, reject) => {
+            // Create a storage reference
+            const storageRef = ref(storage, `uploads/${file.name}`);
+            // Start the file upload
+            const uploadTask = uploadBytesResumable(storageRef, file);
+
+            // Monitor the upload process
+            uploadTask.on('state_changed',
+                (snapshot) => {
+                    // You can use snapshot to show upload progress
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    setUploadProgress(progress);
+                    console.log('Upload is ' + progress + '% done');
+                },
+                (error) => {
+                    // Handle unsuccessful uploads
+                    reject(error);
+                },
+                () => {
+                    // Handle successful uploads on complete
+                    // For instance, get the download URL
+                    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                        resolve(downloadURL);
+                    });
+                }
+            );
+        });
+    }
+
     const { t } = useTranslation();
     const [form, setForm] = useState({
         name: '',
@@ -38,36 +87,42 @@ const Contact = () => {
     const [loading, setLoading] = useState(false)
 
     const handleChange = (e) => {
-        console.log(e);
-        const { name, value } = e.target
-        if (name === 'attachment') {
-            // console.log(e.target)
-            // const file = e.target.files[0];
-            // const reader = new FileReader();
-            // reader.onloadend = () => {
-            //     setForm({ ...form, [name]: reader.result });
-            // };
-            // reader.readAsDataURL(file);
-            const file = e.target.files[0];
-            const result = file.toDataURL();
-        } else {
-            setForm({ ...form, [name]: value });
-        }
+        // console.log(e);
+        const { name, value, files } = e.target
+        // if (name === 'attachment' && files.length > 0) {
+        //     const file = files[0]
+        //     const reader = new FileReader();
+        //     reader.onload = (e) => {
+        //         setForm({ ...form, attachment: reader.result });
+        //     }
+        //     reader.readAsDataURL(file);
+        // } else {
+        setForm({ ...form, [name]: value });
+        // }
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         console.log(form)
-
+        // Assuming there's a file input for uploading files
+        const fileInput = document.querySelector('input[type="file"]');
+        const file = fileInput.files[0]; // Get the file from the file inpu
+        var downloadURL = ""; // Assuming you have a file input
+        try {
+            downloadURL = await uploadFile(file);
+            console.log('File available at', downloadURL);
+            // Now you can use the download URL for the file, for example, save it in your database or include it in an email
+        } catch (error) {
+            console.error("Error uploading file: ", error);
+        }
         emailjs.send("service_kz9zjuf", "template_wzop37d",
             {
                 from_name: form.name,
                 phone: form.phone,
                 email_address: form.email,
                 subject: form.subject,
-                message: form.comment,
-                attachment: form.attachment.split(",")[1]
+                message: `${form.comment} File link: ${downloadURL}`,
             },
             't2e_a-G-kHSqg2qF8')
             .then(() => {
@@ -89,8 +144,8 @@ const Contact = () => {
                 })
     }
 
-    const ref = useRef()
-    const isInView = useInView(ref, { margin: "-100px" });
+    // const ref = useRef()
+    // const isInView = useInView(ref, { margin: "-100px" });
     return (
         <div className="max-w-7xl mx-auto">
             {/* <div className="bg-sectionBg absolute bg-cover w-full h-auto inset-0 z-[-1]"></div> */}
@@ -104,13 +159,23 @@ const Contact = () => {
                     id="form"
                     variants={slideIn("left", "tween", 0.4, 1)}
                 >
-                    <form onSubmit={handleSubmit} className="grid grid-cols-2 auto-rows-min gap-4" >
+                    <form id="contactForm" onSubmit={handleSubmit} className="grid grid-cols-2 auto-rows-min gap-4" >
                         <input className={style.inputsForm} type="text" name="name" placeholder="Name" value={form.name} onChange={handleChange} required />
                         <input className={`${style.inputsForm} justify-self-end`} type="email" name="email" placeholder="Email address" value={form.email} onChange={handleChange} required />
                         <input className={style.inputsForm} type="text" name="subject" placeholder="Subject" value={form.subject} onChange={handleChange} required />
                         <input className={`${style.inputsForm} justify-self-end`} type="text" name="phone" placeholder="Phone" value={form.phone} onChange={handleChange} required />
                         <textarea className="col-span-2 text-[14px] rounded border-1 border-gray-400 outline-none focus:ring-0 focus:border-secondary resize-none" rows="7" name="comment" placeholder="Comment" value={form.comment} onChange={handleChange} required />
-                        <input type="file" className="" name="attachment" onChange={handleChange} />
+                        <label htmlFor="file-upload" className="bg-secondary text-white rounded-md px-4 py-2 cursor-pointer inline-flex items-center justify-center col-span-2">
+                            Upload File
+                            <input id="file-upload" type="file" className="hidden" name="attachment" onChange={handleChange} />
+                        </label>
+                        {/* Upload progress indicator */}
+                        {uploadProgress > 0 && (
+                            <motion.div className="relative bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 col-span-2">
+                                <motion.div className="bg-secondary h-2.5 rounded-full" style={{ width: `${uploadProgress}%` }} />
+                            </motion.div>
+                        )}
+                        {/* <input type="file" className="" name="attachment" onChange={handleChange} /> */}
                         {/* <label className="col-span-2 w-full bg-primary text-secondary rounded-md px-4 py-2 cursor-pointer inline-block">
                             <span>Upload a file</span>
                             <input type="file" className="hidden" name="attachment" />
@@ -152,5 +217,5 @@ const Card = ({ Icon, title, text }) => (
     </div>
 )
 
-export default SectionWrapper(Contact, "#contact")
+export default SectionWrapper(Contact, "contact")
 

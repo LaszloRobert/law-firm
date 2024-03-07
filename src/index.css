@@ -67,16 +67,6 @@ a:hover:after {
   transition: 0.2s ease-in-out;
 }
 
-.section-title-underline::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 47%;
-  width: 100px;
-  height: 3px;
-  background: #af7f42;
-}
-
 .card:hover>.icon {
   color: black !important;
   transition: color 0.8s;

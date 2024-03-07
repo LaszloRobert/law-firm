@@ -4,7 +4,7 @@ import { motion, useAnimation, AnimatePresence } from 'framer-motion'
 import { useTranslation } from "react-i18next";
 import { style } from '../style'
 import { textVariant, fadeIn, slideIn } from "../utils/motion"
-
+import TitleSeparator from "../assets/title-separator-small.svg?react"
 
 const Services = () => {
     const { t, i18n, ready } = useTranslation();
@@ -18,6 +18,7 @@ const Services = () => {
             <div className="max-w-7xl mx-auto">
                 <motion.div variants={textVariant()}>
                     <h2 className={`${style.sectionTitles} section-title-underline`}>{t("SectionTitles.servicesTitle")}</h2>
+                    <TitleSeparator className="-mt-[145px] -mb-[100px] w-full text-secondary" />
                 </motion.div>
                 <div
                     className='flex flex-wrap gap-8 justify-center align-center'
@@ -93,4 +94,4 @@ const Overlay = ({ onClick }) => {
 }
 
 
-export default SectionWrapper(Services, '#services');
+export default SectionWrapper(Services, 'services');
