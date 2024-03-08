@@ -5,11 +5,10 @@ import { SectionWrapper } from '../hoc'
 import { textVariant, fadeIn } from '../utils/motion'
 import { style } from '../style'
 import TitleSeparator from "../assets/title-separator-small.svg?react"
-// import { titleSeparator } from "../assets"
 
 const Team = () => {
     return (
-        <>
+        <div>
             <motion.div variants={textVariant(0)}
                 className='flex flex-col items-center mb-[60px]'
             >
@@ -17,44 +16,17 @@ const Team = () => {
                 <TitleSeparator className="-mt-[145px] -mb-[100px] text-secondary" />
 
             </motion.div>
-            <div className='grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 overflow-x-hidden'>
+            <div className='-z-10 grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 overflow-x-hidden'>
                 {team.map((person, index) => (
                     <TeamCard key={index} index={index} person={person} />
                 ))}
             </div>
-        </>
+        </div>
 
     )
 }
 
 const TeamCard = ({ index, person }) => (
-    // <motion.div
-    //     className='flex flex-col rounded-lg p-5 m-4 text-center text-secondary'
-    //     variants={fadeIn("left", "spring", index * 0.5, 0.75)}
-    // >
-    //     <img
-    //         src={person.icon}
-    //         alt="avocat"
-    //         className='w-[120px] h-[150px] rounded-full mx-auto grayscale hover:grayscale-0 hover:scale-110 transform transition-all ease-out duration-700'
-    //     />
-    //     <div className='py-2'>
-    //         <h3
-    //             className='mb-1 text-xl font-semibold tracking-tighter text-gray-900'
-    //         >
-    //             {person.title}
-    //         </h3>
-    //         <p className='text-black'>
-    //             {person.description}
-    //         </p>
-    //         <p>
-    //             {person.phone}
-    //         </p>
-    //         <p className='text-sm text-gray-600'>
-    //             {person.email}
-    //         </p>
-    //     </div>
-    // </motion.div>
-
     <motion.div
         class="mb-6 lg:mb-0"
         variants={fadeIn("left", "spring", index * 0.5, 0.75)}

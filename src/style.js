@@ -7,7 +7,7 @@ const style = {
     contactInfoTitles: "font-[520px] text-[20px] tracking-wide",
     contactInfoText: "text-[13px] px-10",
     sectionTitles: "relative text-tertiary font-black md:text-[48px] sm:text-[38px] xs:text-[25px] text-[30px] text-center mb-[60px]",
-    inputsForm: "h-12 w-[240px] text-[14px] rounded border-1 border-gray-400 outline-none focus:ring-0 focus:border-secondary"
+    inputsForm: "h-12 w-full md:w-[240px] text-[14px] rounded border-1 border-gray-400 outline-none focus:ring-0 focus:border-secondary col-span-2 md:col-span-1",
 
 
 };

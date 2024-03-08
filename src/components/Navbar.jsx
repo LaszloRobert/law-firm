@@ -10,6 +10,41 @@ import { AnimatePresence, motion } from 'framer-motion';
 import AppointmentButton from './reusableComponents/AppointmentButton'
 import { style } from '../style'
 
+const sidebarVariants = {
+    closed: {
+        clipPath: 'circle(0.5% at 100% 0)',
+        transition: {
+            duration: 0.4
+        },
+        opacity: 0
+    },
+    opened: {
+        clipPath: 'circle(141.2% at 100% 0)',
+        transition: {
+            duration: 0.5
+        },
+        opacity: 1
+    }
+}
+
+const mobileUlVariant = {
+    opened: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.2,
+            delayChildren: 0.2
+        }
+    },
+    closed: {
+        opacity: 0
+    }
+}
+
+const liVariants = {
+    opened: { opacity: 1, y: 0 },
+    closed: { opacity: 0, y: -10 },
+};
+
 const Navbar = () => {
     const { t, ready } = useTranslation();
     const [currentLanguageCode, setCurrentLanguageCode] = useState(
@@ -61,7 +96,7 @@ const Navbar = () => {
                                     <Phone className='w-[1.5rem] text-secondary h-auto object-contain' />
                                 </li>
                                 <li>
-                                    <span className='text-white text-[0.9rem]'>+40 744 851 882</span>
+                                    <a href="tel:+40744851882" className='text-white text-[0.9rem] no-underline'>+40 744 851 882</a>
                                 </li>
                                 <li>
                                     <div className='w-[2px] h-[40px] separator-bg'></div>
@@ -85,7 +120,7 @@ const Navbar = () => {
                         </Link>
                     </div>
 
-                    <ul className='hidden sm:flex items-center gap-[3vw]'>
+                    <ul id="navList" className='hidden sm:flex items-center gap-[3vw]'>
                         {navLinks.map((link) => (
                             <li
                                 key={link.id}
@@ -129,7 +164,7 @@ const Navbar = () => {
                     </ul>
 
                     {/* blur background when mobile menu is opened */}
-                    <div className={toggle ? 'fixed top-0 right-0 left-0 bottom-0 backdrop-filter backdrop-blur-sm' : "hidden"}>
+                    <div className={toggle ? 'fixed inset-0 backdrop-filter backdrop-blur-sm' : "hidden"}>
                     </div>
                     {/* mobile */}
                     <div className='sm:hidden flex'>
@@ -141,7 +176,11 @@ const Navbar = () => {
                         />
                     </div>
 
-                    <div className={`${toggle ? 'translate-x-0' : 'translate-x-full'} fixed flex-col top-0 right-0 bg-[#333333] w-[50%] h-full items-center ease-in-out duration-500 `}>
+                    <motion.div
+                        variants={sidebarVariants}
+                        initial={false}
+                        animate={toggle ? "opened" : "closed"}
+                        className={` fixed flex-col top-0 right-0 bg-[#333333] w-[50%] h-full items-center ease-in-out duration-500 `}>
 
                         <img
                             src={close}
@@ -150,26 +189,37 @@ const Navbar = () => {
                             onClick={() => { setToggle(!toggle) }}
                         />
 
-                        <ul className='w-full px-4 py-3'>
+                        <motion.ul
+                            variants={mobileUlVariant}
+                            initial="closed"
+                            animate={toggle ? "opened" : "closed"}
+                            className='w-full px-4 py-3'>
 
                             {navLinks.map((link) => (
-                                <li
+                                <motion.li
+                                    variants={liVariants}
                                     key={link.id}
                                     className="py-3 border-b border-b-[#4b4b4b] text-[#c69c67]"
                                 >
                                     <a href={`#${link.id}`} className='relative'>{t(link.name)}</a>
-                                </li>
+                                </motion.li>
                             ))}
-                            <li key="appointmentMobile"
+                            <motion.li
+                                variants={liVariants}
+                                key="appointmentMobile"
                                 className='text-center py-3'
                             >
                                 <AppointmentButton className={style.navbarProgrammingButton} />
-                            </li>
-                            <li className='flex items-center justify-center gap-2 p-2'>
+                            </motion.li>
+                            <motion.li
+                                variants={liVariants}
+                                className='flex items-center justify-center gap-2 p-2'>
                                 <Phone className='w-[1.5rem] text-secondary h-auto object-contain' />
                                 <span className='text-white text-[0.9rem]'>+40 744 851 882</span>
-                            </li>
-                            <li className='flex items-center justify-center gap-3 p-2'>
+                            </motion.li>
+                            <motion.li
+                                variants={liVariants}
+                                className='flex items-center justify-center gap-3 p-2'>
                                 {languages.map((language) => (
                                     <ReactCountryFlag
                                         countryCode={language.code}
@@ -178,10 +228,10 @@ const Navbar = () => {
                                     />
                                 )
                                 )}
-                            </li>
+                            </motion.li>
 
-                        </ul>
-                    </div>
+                        </motion.ul>
+                    </motion.div>
                 </div>
             </div>
 

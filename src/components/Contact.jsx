@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 import LocationSVG from "../assets/location.svg?react"
 import EmailSVG from "../assets/email.svg?react"
 import PhoneSVG from "../assets/phone.svg?react"
+import UploadSVG from "../assets/upload.svg?react"
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -122,7 +123,8 @@ const Contact = () => {
                 phone: form.phone,
                 email_address: form.email,
                 subject: form.subject,
-                message: `${form.comment} File link: ${downloadURL}`,
+                message: form.comment,
+                attachment: downloadURL
             },
             't2e_a-G-kHSqg2qF8')
             .then(() => {
@@ -144,11 +146,8 @@ const Contact = () => {
                 })
     }
 
-    // const ref = useRef()
-    // const isInView = useInView(ref, { margin: "-100px" });
     return (
         <div className="max-w-7xl mx-auto">
-            {/* <div className="bg-sectionBg absolute bg-cover w-full h-auto inset-0 z-[-1]"></div> */}
             <div className="bg-contact-bg bg-cover absolute top-0 left-0 right-0 bottom-0 z-[-1] "> </div>
             <div className="bg-contactOverlay w-full h-full absolute top-0 right-0 bottom-0 left-0  z-[-1]"></div>
             <motion.div variants={textVariant()}>
@@ -159,15 +158,16 @@ const Contact = () => {
                     id="form"
                     variants={slideIn("left", "tween", 0.4, 1)}
                 >
-                    <form id="contactForm" onSubmit={handleSubmit} className="grid grid-cols-2 auto-rows-min gap-4" >
+                    <form id="contactForm" onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4" >
                         <input className={style.inputsForm} type="text" name="name" placeholder="Name" value={form.name} onChange={handleChange} required />
-                        <input className={`${style.inputsForm} justify-self-end`} type="email" name="email" placeholder="Email address" value={form.email} onChange={handleChange} required />
+                        <input className={`${style.inputsForm}`} type="email" name="email" placeholder="Email address" value={form.email} onChange={handleChange} required />
                         <input className={style.inputsForm} type="text" name="subject" placeholder="Subject" value={form.subject} onChange={handleChange} required />
                         <input className={`${style.inputsForm} justify-self-end`} type="text" name="phone" placeholder="Phone" value={form.phone} onChange={handleChange} required />
                         <textarea className="col-span-2 text-[14px] rounded border-1 border-gray-400 outline-none focus:ring-0 focus:border-secondary resize-none" rows="7" name="comment" placeholder="Comment" value={form.comment} onChange={handleChange} required />
-                        <label htmlFor="file-upload" className="bg-secondary text-white rounded-md px-4 py-2 cursor-pointer inline-flex items-center justify-center col-span-2">
-                            Upload File
+                        <label htmlFor="file-upload" className="bg-white text-[14px] flex items-center justify-between cursor-pointer col-span-2 border border-1 border-gray-400 rounded p-2 text-[#7e838f]">
+                            Upload your file here
                             <input id="file-upload" type="file" className="hidden" name="attachment" onChange={handleChange} />
+                            <UploadSVG />
                         </label>
                         {/* Upload progress indicator */}
                         {uploadProgress > 0 && (
