@@ -3,18 +3,18 @@ import { SectionWrapper } from '../hoc'
 import { textVariant, fadeIn, slideIn } from '../utils/motion'
 import React from 'react'
 import { style } from '../style'
-import { motion, useInView } from "framer-motion"
-import { location, phone, email } from "../assets"
+import { motion } from "framer-motion"
 import emailjs from '@emailjs/browser'
 import { useTranslation } from "react-i18next";
 import LocationSVG from "../assets/location.svg?react"
 import EmailSVG from "../assets/email.svg?react"
 import PhoneSVG from "../assets/phone.svg?react"
 import UploadSVG from "../assets/upload.svg?react"
+import BouncingCirclesSVG from "../assets/bouncing-circles.svg?react"
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-
+import { toast } from 'react-toastify';
 
 const variants = {
     initial: {
@@ -31,16 +31,19 @@ const variants = {
 
 const Contact = () => {
     const [uploadProgress, setUploadProgress] = useState(0);
+    const [fileName, setFileName] = useState('');
+    const [downloadURL, setDownloadURL] = useState('');
     // Your web app's Firebase configuration
     const firebaseConfig = {
-        apiKey: "AIzaSyCMsPMpmHs0S0E2zRYWjtVeWyOsXswheyo",
-        authDomain: "rusasiasociatii.firebaseapp.com",
-        projectId: "rusasiasociatii",
-        storageBucket: "rusasiasociatii.appspot.com",
-        messagingSenderId: "705499341167",
-        appId: "1:705499341167:web:51ecdccab6d443a3dac89a",
-        measurementId: "G-SDF6CDPGLQ"
+        apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+        authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+        projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+        storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+        messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+        appId: import.meta.env.VITE_FIREBASE_APP_ID,
+        measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
     };
+
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     // Get a reference to the storage service
@@ -87,36 +90,30 @@ const Contact = () => {
     })
     const [loading, setLoading] = useState(false)
 
-    const handleChange = (e) => {
-        // console.log(e);
+    const handleChange = async (e) => {
+        toast.success('Email sent successfully!');
         const { name, value, files } = e.target
-        // if (name === 'attachment' && files.length > 0) {
-        //     const file = files[0]
-        //     const reader = new FileReader();
-        //     reader.onload = (e) => {
-        //         setForm({ ...form, attachment: reader.result });
-        //     }
-        //     reader.readAsDataURL(file);
-        // } else {
-        setForm({ ...form, [name]: value });
-        // }
+        if (name === 'attachment' && files.length > 0) {
+            // Assuming there's a file input for uploading files
+            const fileInput = document.querySelector('input[type="file"]');
+            const file = fileInput.files[0]; // Get the file from the file inpu
+            try {
+                setFileName(file.name);
+                const url = await uploadFile(file);
+                setDownloadURL(url);
+                console.log('File available at', downloadURL);
+                // Now you can use the download URL for the file, for example, save it in your database or include it in an email
+            } catch (error) {
+                console.error("Error uploading file: ", error);
+            }
+        } else {
+            setForm({ ...form, [name]: value });
+        }
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        console.log(form)
-        // Assuming there's a file input for uploading files
-        const fileInput = document.querySelector('input[type="file"]');
-        const file = fileInput.files[0]; // Get the file from the file inpu
-        var downloadURL = ""; // Assuming you have a file input
-        try {
-            downloadURL = await uploadFile(file);
-            console.log('File available at', downloadURL);
-            // Now you can use the download URL for the file, for example, save it in your database or include it in an email
-        } catch (error) {
-            console.error("Error uploading file: ", error);
-        }
         emailjs.send("service_kz9zjuf", "template_wzop37d",
             {
                 from_name: form.name,
@@ -129,6 +126,7 @@ const Contact = () => {
             't2e_a-G-kHSqg2qF8')
             .then(() => {
                 setLoading(false)
+                toast.success('Email sent successfully!');
                 alert("I'll back to you as soon as posibil")
                 setForm({
                     name: '',
@@ -145,7 +143,12 @@ const Contact = () => {
                     alert("Something went wrong");
                 })
     }
+    const [isHovered, setIsHovered] = useState(false);
 
+    const bounceAnimation = {
+        y: [0, -2, 0, 2, 0],
+        transition: { duration: .5, ease: 'easeInOut' }
+    };
     return (
         <div className="max-w-7xl mx-auto">
             <div className="bg-contact-bg bg-cover absolute top-0 left-0 right-0 bottom-0 z-[-1] "> </div>
@@ -159,15 +162,24 @@ const Contact = () => {
                     variants={slideIn("left", "tween", 0.4, 1)}
                 >
                     <form id="contactForm" onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4" >
-                        <input className={style.inputsForm} type="text" name="name" placeholder="Name" value={form.name} onChange={handleChange} required />
-                        <input className={`${style.inputsForm}`} type="email" name="email" placeholder="Email address" value={form.email} onChange={handleChange} required />
-                        <input className={style.inputsForm} type="text" name="subject" placeholder="Subject" value={form.subject} onChange={handleChange} required />
-                        <input className={`${style.inputsForm} justify-self-end`} type="text" name="phone" placeholder="Phone" value={form.phone} onChange={handleChange} required />
-                        <textarea className="col-span-2 text-[14px] rounded border-1 border-gray-400 outline-none focus:ring-0 focus:border-secondary resize-none" rows="7" name="comment" placeholder="Comment" value={form.comment} onChange={handleChange} required />
-                        <label htmlFor="file-upload" className="bg-white text-[14px] flex items-center justify-between cursor-pointer col-span-2 border border-1 border-gray-400 rounded p-2 text-[#7e838f]">
-                            Upload your file here
+                        <input className={style.inputsForm} type="text" name="name" placeholder={t("GetInTouch.Name")} value={form.name} onChange={handleChange} required />
+                        <input className={`${style.inputsForm}`} type="email" name="email" placeholder={t("GetInTouch.Email")} value={form.email} onChange={handleChange} required />
+                        <input className={style.inputsForm} type="text" name="subject" placeholder={t("GetInTouch.Subject")} value={form.subject} onChange={handleChange} required />
+                        <input className={`${style.inputsForm} justify-self-end`} type="text" name="phone" placeholder={t("GetInTouch.Phone")} value={form.phone} onChange={handleChange} required />
+                        <textarea className="col-span-2 text-[14px] rounded border-1 border-gray-400 outline-none focus:ring-0 focus:border-secondary resize-none" rows="7" name="comment" placeholder={t("GetInTouch.Message")} value={form.comment} onChange={handleChange} required />
+                        <label htmlFor="file-upload"
+                            className="bg-white text-[14px] flex items-center justify-between cursor-pointer col-span-2 border border-1 border-gray-400 rounded p-2 text-[#7e838f]"
+                            onMouseEnter={() => setIsHovered(true)}
+                            onMouseLeave={() => setIsHovered(false)}>
+                            {uploadProgress === 100 ? fileName : uploadProgress > 0 ? t("UploadFile.UploadingFile") : t("GetInTouch.UploadFile")}
                             <input id="file-upload" type="file" className="hidden" name="attachment" onChange={handleChange} />
-                            <UploadSVG />
+                            {uploadProgress > 0 && uploadProgress < 100 ? (
+                                <BouncingCirclesSVG className="w-8 text-secondary" /> // Show spinner when upload is in progress
+                            ) : (
+                                <motion.div animate={isHovered ? bounceAnimation : {}}>
+                                    <UploadSVG />
+                                </motion.div>
+                            )}
                         </label>
                         {/* Upload progress indicator */}
                         {uploadProgress > 0 && (
@@ -175,11 +187,6 @@ const Contact = () => {
                                 <motion.div className="bg-secondary h-2.5 rounded-full" style={{ width: `${uploadProgress}%` }} />
                             </motion.div>
                         )}
-                        {/* <input type="file" className="" name="attachment" onChange={handleChange} /> */}
-                        {/* <label className="col-span-2 w-full bg-primary text-secondary rounded-md px-4 py-2 cursor-pointer inline-block">
-                            <span>Upload a file</span>
-                            <input type="file" className="hidden" name="attachment" />
-                        </label> */}
                         <button className="bg-secondary leading-9 text-[14px] text-white w-[120px] col-start-2 justify-self-end border rounded hover:bg-white hover:text-secondary hover:scale-110 duration-200" type="submit">SUBMIT</button>
                     </form>
                 </motion.div>

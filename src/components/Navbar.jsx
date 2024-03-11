@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import ReactCountryFlag from "react-country-flag"
@@ -9,68 +9,48 @@ import Phone from "../assets/phoneNavbar.svg?react"
 import { AnimatePresence, motion } from 'framer-motion';
 import AppointmentButton from './reusableComponents/AppointmentButton'
 import { style } from '../style'
+import { navbarMobileVariants, mobileUlVariant, liVariants } from '../utils/motion'
 
-const sidebarVariants = {
-    closed: {
-        clipPath: 'circle(0.5% at 100% 0)',
-        transition: {
-            duration: 0.4
-        },
-        opacity: 0
-    },
-    opened: {
-        clipPath: 'circle(141.2% at 100% 0)',
-        transition: {
-            duration: 0.5
-        },
-        opacity: 1
-    }
-}
 
-const mobileUlVariant = {
-    opened: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.2,
-            delayChildren: 0.2
-        }
-    },
-    closed: {
-        opacity: 0
-    }
-}
-
-const liVariants = {
-    opened: { opacity: 1, y: 0 },
-    closed: { opacity: 0, y: -10 },
-};
 
 const Navbar = () => {
     const { t, ready } = useTranslation();
     const [currentLanguageCode, setCurrentLanguageCode] = useState(
         document.cookie.split("; ").find((row) => row.startsWith("i18next"))?.split("=")[1] ?? "ro")
-    const [active, setActive] = useState('');
     const [toggle, setToggle] = useState(false);
     //change nav color when scrolling
-    const [color, setColor] = useState(false);
+    const [scrolledDown, setscrolledDown] = useState(false);
 
     const navLinks = t("Navbar", { returnObjects: true })
 
-    const handleLanguageChange = (language) => {
+    const scrollToSection = useCallback((sectionId) => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }, []);
+
+    const handleLanguageChange = useCallback((language) => {
         setCurrentLanguageCode(language);
         i18next.changeLanguage(language);
         const theDropdown = FlowbiteInstances.getInstance('Dropdown', 'dropdown');
         theDropdown.hide();
-    }
+    }, [setCurrentLanguageCode]);
 
-    const changeColor = () => {
-        if (window.scrollY >= 40)
-            setColor(true);
-        else
-            setColor(false);
-    }
+    useEffect(() => {
+        const scrollPosition = () => {
+            if (window.scrollY >= 40)
+                setscrolledDown(true);
+            else
+                setscrolledDown(false);
+        }
 
-    window.addEventListener('scroll', changeColor);
+        window.addEventListener('scroll', scrollPosition);
+
+        return () => {
+            window.removeEventListener('scroll', scrollPosition);
+        }
+    }, []);
 
     while (!ready) {
         return null;
@@ -78,25 +58,26 @@ const Navbar = () => {
 
     return (
         <nav
-            className={`${color ? "bg-zinc-900" : "bg-navBarBg"} bg-navBarBg w-full top-0 fixed ease-in-out duration-700 z-20`}
+            className={`${scrolledDown ? "bg-zinc-900" : "bg-navBarBg"} bg-navBarBg w-full top-0 fixed ease-in-out duration-700 z-20`}
         >
 
             <div
                 className='max-w-7xl mx-auto'
             >
                 <AnimatePresence>
-                    {!color && (
-                        <motion.div className='hidden sm:block'
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20, transition: { duration: 0.5 } }}
+                    {!scrolledDown && (
+                        <motion.div id="firstRow" className='hidden sm:block'
+                            initial={{ opacity: 0, y: -20, height: 0 }}
+                            animate={{ opacity: 1, y: 0, height: "52px" }} // Use "auto" for height to let it grow as needed
+                            exit={{ opacity: 0, y: -20, height: 0, transition: { duration: 0.5 } }}
+
                         >
                             <ul className='flex gap-3 items-center justify-end py-2 relative'>
                                 <li>
                                     <Phone className='w-[1.5rem] text-secondary h-auto object-contain' />
                                 </li>
                                 <li>
-                                    <a href="tel:+40744851882" className='text-white text-[0.9rem] no-underline'>+40 744 851 882</a>
+                                    <a href="tel:+40744851882" className='text-white text-[0.9rem]'>+40 744 851 882</a>
                                 </li>
                                 <li>
                                     <div className='w-[2px] h-[40px] separator-bg'></div>
@@ -112,9 +93,8 @@ const Navbar = () => {
                     <div className='flex'>
                         <Link
                             to='/'
-                            // className='text-primary font-medium text-[1.4rem] relative'
                             className='font-dance relative text-[1.4rem] text-primary'
-                            onClick={() => { setActive(''); window.scrollTo(0, 0) }}
+                            onClick={() => { window.scrollTo(0, 0) }}
                         >
                             RUSA și Asociații
                         </Link>
@@ -124,10 +104,12 @@ const Navbar = () => {
                         {navLinks.map((link) => (
                             <li
                                 key={link.id}
-                                className={`${active === link.id ? "text-secondary" : "text-primary"} text-[1rem] cursor-pointer hover:text-secondary transition-colors duration-200`}
-                                onClick={() => setActive(link.id)}
+                                className="text-primary text-[1rem] cursor-pointer hover:text-secondary transition-colors duration-200"
                             >
-                                <a href={`#${link.id}`} className='relative'>{t(link.name)}</a>
+                                <Link
+                                    onClick={() => scrollToSection(link.id)}
+                                    className='relative'>{t(link.name)}
+                                </Link>
                             </li>
                         ))}
 
@@ -177,7 +159,7 @@ const Navbar = () => {
                     </div>
 
                     <motion.div
-                        variants={sidebarVariants}
+                        variants={navbarMobileVariants}
                         initial={false}
                         animate={toggle ? "opened" : "closed"}
                         className={` fixed flex-col top-0 right-0 bg-[#333333] w-[50%] h-full items-center ease-in-out duration-500 `}>
@@ -201,7 +183,10 @@ const Navbar = () => {
                                     key={link.id}
                                     className="py-3 border-b border-b-[#4b4b4b] text-[#c69c67]"
                                 >
-                                    <a href={`#${link.id}`} className='relative'>{t(link.name)}</a>
+                                    <Link
+                                        onClick={() => scrollToSection(link.id)}
+                                        className='relative'>{t(link.name)}
+                                    </Link>
                                 </motion.li>
                             ))}
                             <motion.li
@@ -215,7 +200,7 @@ const Navbar = () => {
                                 variants={liVariants}
                                 className='flex items-center justify-center gap-2 p-2'>
                                 <Phone className='w-[1.5rem] text-secondary h-auto object-contain' />
-                                <span className='text-white text-[0.9rem]'>+40 744 851 882</span>
+                                <a href="tel:+40744851882" className='text-white text-[0.9rem]'>+40 744 851 882</a>
                             </motion.li>
                             <motion.li
                                 variants={liVariants}

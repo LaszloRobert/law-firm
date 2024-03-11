@@ -68,3 +68,39 @@ export const slideIn = (direction, type, delay, duration) => {
         },
     };
 };
+
+export const navbarMobileVariants = {
+    closed: {
+        clipPath: 'circle(0.5% at 100% 0)',
+        transition: {
+            duration: 0.4
+        },
+        opacity: 0
+    },
+    opened: {
+        clipPath: 'circle(141.2% at 100% 0)',
+        transition: {
+            duration: 0.5
+        },
+        opacity: 1
+    }
+}
+
+
+export const mobileUlVariant = {
+    opened: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.2,
+            delayChildren: 0.2
+        }
+    },
+    closed: {
+        opacity: 0
+    }
+}
+
+export const liVariants = {
+    opened: { opacity: 1, y: 0 },
+    closed: { opacity: 0, y: -10 },
+};

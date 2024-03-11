@@ -142,8 +142,11 @@
     "GetInTouch": {
         "Name": "Nume",
         "Email": "Email",
+        "Subject": "Subiect",
         "Message": "Mesaj",
         "Phone": "Telefon",
-        "Address": "Adresa"
+        "Address": "Adresă",
+        "UploadFile": "Încarcă fișier",
+        "UploadingFile": "Se încarcă fișierul..."
     }
 }
