@@ -27,6 +27,10 @@
         "Efficiency",
         "Communication"
     ],
+    "AboutSection": {
+        "id": "about",
+        "text": "Our company values integrity, transparency, and efficiency.\nWe adopt a pragmatic and results-oriented approach, demonstrating a strong commitment to excellence and professional ethics. Our goal is to consistently offer tailored legal solutions that meet the specific needs of each case. Therefore, we actively pursue continuous professional training to remain abreast of the latest legislative and jurisprudential changes, as well as the best practices in the field. Our experience in the field, as well as proactive approach and meticulous attention to detail set us apart."
+    },
     "Appointment": {
         "id": "appointment",
         "name": "Appointment"
@@ -40,18 +44,152 @@
     "ServicesSection": [
         {
             "id": "service1",
-            "title": "1.English",
-            "description": "Description"
+            "title": "General Legal Consultancy",
+            "description": "Our company offers a diverse array of legal consultancy services catering to commercial entities, public institutions, and individuals alike. These services include both ongoing legal consultancy and punctual legal consultancy on a specific issue."
         },
         {
             "id": "service2",
-            "title": "2. English",
-            "description": "Description"
+            "title": "Contracts",
+            "description": [
+                "\u2022legal assistance and representation before the courts in disputes arising from the execution, annulment, resolution, or termination of a contract",
+                "\n\u2022specialized legal assistance during the negotiation stage of civil and commercial contracts",
+                "\n\u2022drafting unilateral and bilateral sales agreements, as well as sales contracts",
+                "\n\u2022drafting lease, construction, service provision contracts",
+                "\n\u2022providing qualified assistance before a notary public for the execution of any type of legal act, as well as before financial institutions for the execution of credit agreements"
+            ]
+        },
+        {
+            "id": "service3",
+            "title": "Restitution of unlawfully seized real estate",
+            "description": [
+                "\u2022restoration and establishment of private ownership rights over land, in accordance with Law no. 18/1991 on land resources",
+                "\n\u2022restorative measures for individuals and their heirs whose residential properties have been expropriated by the state, as stipulated in Law no. 113/1995",
+                "\n\u2022restorative measures provided for properties unlawfully seized by the state or other legal entities between March 6, 1945, and December 22, 1989, under Law 10/2001"
+            ]
+        },
+        {
+            "id": "service4",
+            "title": "Land Registry Actions",
+            "description": [
+                "\u2022action for specific performance of land registry entries",
+                "\n\u2022action for rectification of land registry records",
+                "\n\u2022action for justification of land registry entries"
+            ]
+        },
+        {
+            "id": "service5",
+            "title": "Successions",
+            "description": [
+                "\u2022legal assistance and representation in notarial succession procedures",
+                "\n\u2022legal assistance and representation in succession procedures conducted before the courts",
+                "\n\u2022legal assistance and representation in succession partition procedures, whether conventional or judicial",
+                "\n\u2022specialized consultancy for drafting various types of wills"
+            ]
+        },
+        {
+            "id": "service6",
+            "title": "Family Law",
+            "description": [
+                "\u2022qualified assistance in divorce proceedings, whether before a notary public or the courts",
+                "\n\u2022liquidation of the marital community, through contentious or non-contentious procedures, with legal assistance and representation in the division of shared assets",
+                "\n\u2022drafting and negotiation of collective labor contracts",
+                "\n\u2022legal assistance and representation in matters concerning minors, including custody arrangements, the establishment of personal relationship programs with minors for non-resident parents, and obtaining child support pensions."
+            ]
+        },
+        {
+            "id": "service7",
+            "title": "Lawful or Unlawful Legal Acts ",
+            "description": [
+                "Legal assistance and representation in disputes related to:",
+                "\n\u2022tort liability",
+                "\n\u2022business management",
+                "\n\u2022undue payment",
+                "\n\u2022unjust enrichment"
+            ]
+        },
+        {
+            "id": "service8",
+            "title": "Property law",
+            "description": [
+                "\u2022legal consultancy, assistance, and representation for the defence of private property rights, including actions of reclamation, demarcation, and negative action",
+                "\n\u2022defence of possession as a factual state",
+                "\n\u2022defence of the fragmentation of private property rights",
+                "\n\u2022methods of acquiring private property rights, including usucaption and immovable accession, both natural and artificial",
+                "\n\u2022legal assistance and representation in matters of expropriation for public utility purposes"
+            ]
+        },
+        {
+            "id": "service9",
+            "title": "Special Procedures",
+            "description": [
+                "\u2022measures of judicial protection (including judicial counselling, special guardianship, and protective mandates)",
+                "\n\u2022procedure for declaring death",
+                "\n\u2022provisional and interim measures",
+                "\n\u2022presidential decrees",
+                "\n\u2022payment orders",
+                "\n\u2022claims of low value",
+                "\n\u2022eviction from premises used or occupied without authorization",
+                "\n\u2022judicial bail"
+            ]
+        },
+        {
+            "id": "service10",
+            "title": "Financial and Banking Law",
+            "description": [
+                "\u2022consultancy, legal assistance, and representation concerning abusive clauses in contracts concluded with financial institutions",
+                "\n\u2022provision of consultancy services regarding banking activities",
+                "\n\u2022specialized consultancy in financial and operational leasing matters",
+                "\n\u2022legal consultancy regarding the feasibility and legality of financial transactions."
+            ]
+        },
+        {
+            "id": "service11",
+            "title": "GDPR",
+            "description": [
+                "\u2022comprehensive legislative information on EU Regulation no. 2016/679 of the European Parliament and of the Council of 27 April 2016, concerning the protection of natural persons regarding the processing of personal data and the free movement of such data",
+                "\nGDPR audit",
+                "\n\u2022preparation of the operator's evaluation report and human resources documents",
+                "\n\u2022drafting agreements with authorized persons and associated operators",
+                "\n\u2022data processing and record-keeping",
+                "\n\u2022staff training",
+                "\n\u2022legal assistance and representation before the National Authority for the Supervision of Personal Data Processing and the courts"
+            ]
+        },
+        {
+            "id": "service12",
+            "title": "Criminal Law",
+            "description": [
+                "\u2022legal assistance and representation before the criminal prosecution authorities and throughout all stages of criminal proceedings in court"
+            ]
+        },
+        {
+            "id": "service13",
+            "title": "Misdemeanour law",
+            "description": [
+                "\u2022legal assistance and representation in contesting contravention notices and the associated sanctions"
+            ]
+        },
+        {
+            "id": "service14",
+            "title": "Corporate Law",
+            "description": [
+                "\u2022legal assistance in the establishment, operation, dissolution, liquidation, reorganization, and cessation of commercial companies"
+            ]
+        },
+        {
+            "id": "service15",
+            "title": "Labour Law",
+            "description": [
+                "\u2022assistance with disciplinary procedures",
+                "\n\u2022mediation of labour disputes",
+                "\n\u2022contesting disciplinary sanctions",
+                "\n\u2022legal assistance and representation in judicial proceedings related to work accidents, wrongful dismissals, and recovery of damages"
+            ]
         }
     ],
     "AppointmentSuggestion": {
         "id": "appointmentSuggestion",
-        "text": "Do you need legal consulting or legal assistance?"
+        "text": "Do you need legal advice or assistance?"
     },
     "GetInTouch": {
         "Name": "Name",

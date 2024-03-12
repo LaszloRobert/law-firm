@@ -27,6 +27,29 @@
         "Hatékonyság",
         "Kommunikáció"
     ],
+    "AboutSection": {
+        "id": "about",
+        "text": "Ügyvédi társaságunk legfőbb értékei a hitelesség, az átláthatóság és a hatékonyság.\nPragmatikus és eredményorientált megközelítést alkalmazunk, a kiválóság és a szakmai etika iránti szilárd elkötelezettséggel. Arra törekszünk, hogy az egyes esetek sajátosságaihoz igazodó, megfelelő jogi megoldásokat kínáljunk, ezért folyamatos szakmai képzésekben veszünk részt, a legújabb jogszabályi és esetjogi változások valamint gyakorlatok elsajátítása érdekében. Tapasztalatunkkal együtt, kiemel minket a jogi problémákhoz megoldására irányuló proaktív hozzáállásunk és a részletekre való odafigyelésünk."
+    },
+    "Appointment": {
+        "id": "appointment",
+        "name": "KAPCSOLAT"
+    },
+    "Footer": {
+        "createdBy": "Készítette az Evolve Software Solutions"
+    },
+    "SectionTitles": {
+        "servicesTitle": "Szolgáltatásaink",
+        "aboutTitle": "Rólunk",
+        "contactTitle": "Elérhetőség"
+    },
+    "ServicesSection": [
+        {
+            "id": "service1",
+            "title": "Jogi tanácsadás",
+            "description": "Irodánk széleskörű jogi szolgáltatásokat kínál, úgy magánszemélyeknek, mint vállalatoknak és közintézményeknek is egyaránt. Ügyfeleink érdekeinek szakszerű képviselete állandó megbízás alapján, vagy egyszeri, konkrét jogi esetre szorítkozva valósul meg"
+        }
+    ],
     "AppointmentSuggestion": {
         "id": "appointmentSuggestion",
         "text": "Szüksége van jogi tanácsadásra vagy jogi segítségre?"

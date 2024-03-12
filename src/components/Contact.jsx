@@ -1,84 +1,25 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { SectionWrapper } from '../hoc'
-import { textVariant, fadeIn, slideIn } from '../utils/motion'
+import { textVariant, slideIn } from '../utils/motion'
 import React from 'react'
 import { style } from '../style'
 import { motion } from "framer-motion"
-import emailjs from '@emailjs/browser'
 import { useTranslation } from "react-i18next";
 import LocationSVG from "../assets/location.svg?react"
 import EmailSVG from "../assets/email.svg?react"
 import PhoneSVG from "../assets/phone.svg?react"
 import UploadSVG from "../assets/upload.svg?react"
 import BouncingCirclesSVG from "../assets/bouncing-circles.svg?react"
-import { initializeApp } from "firebase/app";
-import { getStorage } from "firebase/storage";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { uploadFile } from "../services/firebaseService"
+import { sendEmail } from "../services/emailServices"
 import { toast } from 'react-toastify';
+import { Helmet } from "react-helmet";
 
-const variants = {
-    initial: {
-        opacity: 0
-    },
-    animate: {
-        opacity: 1,
-        transition: {
-            duration: 0.5,
-            staggerChildren: 0.1
-        }
-    }
-}
 
 const Contact = () => {
     const [uploadProgress, setUploadProgress] = useState(0);
     const [fileName, setFileName] = useState('');
     const [downloadURL, setDownloadURL] = useState('');
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-        apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-        authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-        projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-        storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-        messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-        appId: import.meta.env.VITE_FIREBASE_APP_ID,
-        measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
-    };
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    // Get a reference to the storage service
-    const storage = getStorage(app);
-    // const analytics = getAnalytics(app);
-    const uploadFile = (file) => {
-        return new Promise((resolve, reject) => {
-            // Create a storage reference
-            const storageRef = ref(storage, `uploads/${file.name}`);
-            // Start the file upload
-            const uploadTask = uploadBytesResumable(storageRef, file);
-
-            // Monitor the upload process
-            uploadTask.on('state_changed',
-                (snapshot) => {
-                    // You can use snapshot to show upload progress
-                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    setUploadProgress(progress);
-                    console.log('Upload is ' + progress + '% done');
-                },
-                (error) => {
-                    // Handle unsuccessful uploads
-                    reject(error);
-                },
-                () => {
-                    // Handle successful uploads on complete
-                    // For instance, get the download URL
-                    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                        resolve(downloadURL);
-                    });
-                }
-            );
-        });
-    }
-
     const { t } = useTranslation();
     const [form, setForm] = useState({
         name: '',
@@ -89,45 +30,39 @@ const Contact = () => {
         attachment: ''
     })
     const [loading, setLoading] = useState(false)
+    const [isHovered, setIsHovered] = useState(false);
 
+    const bounceAnimation = {
+        y: [0, -2, 0, 2, 0],
+        transition: { duration: .5, ease: 'easeInOut' }
+    };
     const handleChange = async (e) => {
-        toast.success('Email sent successfully!');
         const { name, value, files } = e.target
         if (name === 'attachment' && files.length > 0) {
-            // Assuming there's a file input for uploading files
-            const fileInput = document.querySelector('input[type="file"]');
-            const file = fileInput.files[0]; // Get the file from the file inpu
-            try {
-                setFileName(file.name);
-                const url = await uploadFile(file);
-                setDownloadURL(url);
-                console.log('File available at', downloadURL);
-                // Now you can use the download URL for the file, for example, save it in your database or include it in an email
-            } catch (error) {
-                console.error("Error uploading file: ", error);
-            }
+            handleFileUpload(files[0]);
         } else {
             setForm({ ...form, [name]: value });
         }
     }
 
+    const handleFileUpload = (file) => {
+        setFileName(file.name); // Set the file name immediately for UI feedback
+        uploadFile(file, setUploadProgress)
+            .then((downloadURL) => {
+                setDownloadURL(downloadURL); // Update the state with the URL on success
+            })
+            .catch((error) => {
+                toast.error(t("GetInTouch.UploadFileError")); // Display a toast notification for the error
+            });
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        emailjs.send("service_kz9zjuf", "template_wzop37d",
-            {
-                from_name: form.name,
-                phone: form.phone,
-                email_address: form.email,
-                subject: form.subject,
-                message: form.comment,
-                attachment: downloadURL
-            },
-            't2e_a-G-kHSqg2qF8')
+        sendEmail(form, downloadURL)
             .then(() => {
                 setLoading(false)
-                toast.success('Email sent successfully!');
-                alert("I'll back to you as soon as posibil")
+                toast.success(t("GetInTouch.EmailSent"));
                 setForm({
                     name: '',
                     email: '',
@@ -137,20 +72,19 @@ const Contact = () => {
                     attachment: ''
                 })
             },
-                (error) => {
+                () => {
                     setLoading(false)
-                    alert(error)
-                    alert("Something went wrong");
+                    toast.error(t("GetInTouch.EmailError"));
                 })
     }
-    const [isHovered, setIsHovered] = useState(false);
 
-    const bounceAnimation = {
-        y: [0, -2, 0, 2, 0],
-        transition: { duration: .5, ease: 'easeInOut' }
-    };
+
     return (
         <div className="max-w-7xl mx-auto">
+            {/* <Helmet>
+                <title>Contact - Rusa si Asociatii avocat</title>
+                <meta name="description" content="Contactați Rusa si Asociatii pentru întrebări, suport și mai mult. Ne puteți contacta prin email, telefon sau formularul nostru de contact." />
+            </Helmet> */}
             <div className="bg-contact-bg bg-cover absolute top-0 left-0 right-0 bottom-0 z-[-1] "> </div>
             <div className="bg-contactOverlay w-full h-full absolute top-0 right-0 bottom-0 left-0  z-[-1]"></div>
             <motion.div variants={textVariant()}>
@@ -187,7 +121,7 @@ const Contact = () => {
                                 <motion.div className="bg-secondary h-2.5 rounded-full" style={{ width: `${uploadProgress}%` }} />
                             </motion.div>
                         )}
-                        <button className="bg-secondary leading-9 text-[14px] text-white w-[120px] col-start-2 justify-self-end border rounded hover:bg-white hover:text-secondary hover:scale-110 duration-200" type="submit">SUBMIT</button>
+                        <button className="bg-secondary leading-9 text-[14px] text-white w-[120px] col-start-2 justify-self-end border rounded hover:bg-white hover:text-secondary hover:scale-110 duration-200" type="submit">{t("GetInTouch.SubmitButton")}</button>
                     </form>
                 </motion.div>
 
@@ -220,7 +154,6 @@ const Card = ({ Icon, title, text }) => (
             <h2 className="font-bold mb-2 mx-auto w-full">{title}</h2>
             <p>{text}</p>
         </div>
-
     </div>
 )
 

@@ -36,9 +36,7 @@
         "name": "PROGRAMARE"
     },
     "Footer": {
-        "character": "©",
-        "main": "Rusa și Asociații",
-        "createdBy": "| Realizat de Evolve Software Solutions."
+        "createdBy": "Realizat de Evolve Software Solutions."
     },
     "SectionTitles": {
         "servicesTitle": "Servicii",
@@ -147,6 +145,10 @@
         "Phone": "Telefon",
         "Address": "Adresă",
         "UploadFile": "Încarcă fișier",
-        "UploadingFile": "Se încarcă fișierul..."
+        "UploadingFile": "Se încarcă fișierul...",
+        "UploadFileError": "Fișierul nu a putut fi încărcat",
+        "EmailSent": "Email trimis cu succes",
+        "EmailError": "Email-ul nu a putut fi trimis",
+        "SubmitButton": "Trimite"
     }
 }

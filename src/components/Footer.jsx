@@ -5,15 +5,18 @@ const Footer = () => {
     const { t } = useTranslation();
     const currentYear = new Date().getFullYear();
     return (
-        <section id="Footer">
-            <div className='gradient text-primary  sm:p-2 p-1 text-[12px] flex justify-center'>
-                <p className=''>{t('Footer.character')}</p>
-                <p className='ml-1 mr-2'>{currentYear}</p>
-                <p className='font-bold mr-2 tracking-wider'>{t('Footer.main')}</p>
-                <p className=''>{t('Footer.createdBy')}</p>
-            </div>
-        </section>
-
+        <footer className='gradient text-primary p-1 md:p-3 text-xs md:text-sm flex flex-col md:flex-row justify-center items-center'>
+            <span>
+                {`© ${currentYear} `}
+                <span className='font-bold tracking-wider'>
+                    Rusa și Asociații
+                </span>
+            </span>
+            <span className='hidden md:flex mx-1'>|</span>
+            <span>
+                {` ${t('Footer.createdBy')}`}
+            </span>
+        </footer>
     )
 }
 

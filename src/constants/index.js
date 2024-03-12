@@ -39,15 +39,3 @@ export const team = [
         icon: imola
     }
 ]
-
-
-// export const services = [
-//     {
-//         languageID: "Services.Service1",
-//         id: "service1",
-//     },
-//     {
-//         languageID: "Services.Service2",
-//         id: "service2",
-//     }
-// ]
