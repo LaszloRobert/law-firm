@@ -119,7 +119,10 @@ const Navbar = () => {
                                 data-dropdown-toggle="dropdown"
                                 data-dropdown-trigger="click"
                             >
-                                <ReactCountryFlag countryCode={currentLanguageCode} svg />
+                                <ReactCountryFlag
+                                    alt="iconita limba selectata"
+                                    countryCode={currentLanguageCode}
+                                    svg />
                             </button>
                             {/* Dropdown Menu */}
                             <div id="dropdown" className='hidden'>
@@ -132,6 +135,7 @@ const Navbar = () => {
 
                                         >
                                             <ReactCountryFlag
+                                                alt="iconita limba selectata"
                                                 countryCode={language.code}
                                                 svg
                                             />
@@ -152,7 +156,7 @@ const Navbar = () => {
                     <div className='sm:hidden flex'>
                         <img
                             src={menu}
-                            alt="menu"
+                            alt="meniu hamburger"
                             className='w-[20px]  object-contain cursor-pointer'
                             onClick={() => { setToggle(!toggle) }}
                         />
@@ -166,7 +170,7 @@ const Navbar = () => {
 
                         <img
                             src={close}
-                            alt="close"
+                            alt="inchidere"
                             className='w-[20px] h-auto mt-2 ml-auto mr-2 object-contain cursor-pointer '
                             onClick={() => { setToggle(!toggle) }}
                         />
@@ -207,6 +211,7 @@ const Navbar = () => {
                                 className='flex items-center justify-center gap-3 p-2'>
                                 {languages.map((language) => (
                                     <ReactCountryFlag
+                                        alt="iconita limba selectata"
                                         countryCode={language.code}
                                         onClick={() => handleLanguageChange(language.code)}
                                         svg

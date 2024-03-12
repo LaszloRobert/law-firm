@@ -35,7 +35,10 @@ const TeamCard = ({ index, person }) => (
         <div
             class="block  mb-2 rounded-lg bg-[#e1dfd2] shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
             <div class="relative overflow-hidden bg-cover bg-no-repeat">
-                <img src={person.icon} class="rounded-t-lg" />
+                <img
+                    alt="Avocati din Cluj Napoca - Rusa si Asociatii"
+                    src={person.icon}
+                    class="rounded-t-lg" />
                 <svg class="absolute text-[#e1dfd2] left-0 -bottom-1" xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 1440 320">
                     <path fill="currentColor"

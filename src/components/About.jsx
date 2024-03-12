@@ -32,7 +32,7 @@ const About = () => {
                 >
                     <img
                         src={aboutus}
-                        alt="aboutImage"
+                        alt="Despre societatea de avocatura Rusa si Asociatii"
                         className='w-[400px] h-[400px] rounded-full object-cover b-2 shadow-2xl shadow-secondary hover:shadow-2xl  ease-out duration-700 hover:scale-110'
                     />
                 </motion.div>
