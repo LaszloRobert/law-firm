@@ -13,7 +13,6 @@ import BouncingCirclesSVG from "../assets/bouncing-circles.svg?react"
 import { uploadFile } from "../services/firebaseService"
 import { sendEmail } from "../services/emailServices"
 import { toast } from 'react-toastify';
-import { Helmet } from "react-helmet";
 
 
 const Contact = () => {
@@ -81,10 +80,6 @@ const Contact = () => {
 
     return (
         <div className="max-w-7xl mx-auto">
-            {/* <Helmet>
-                <title>Contact - Rusa si Asociatii avocat</title>
-                <meta name="description" content="Contactați Rusa si Asociatii pentru întrebări, suport și mai mult. Ne puteți contacta prin email, telefon sau formularul nostru de contact." />
-            </Helmet> */}
             <div className="bg-contact-bg bg-cover absolute top-0 left-0 right-0 bottom-0 z-[-1] "> </div>
             <div className="bg-contactOverlay w-full h-full absolute top-0 right-0 bottom-0 left-0  z-[-1]"></div>
             <motion.div variants={textVariant()}>
