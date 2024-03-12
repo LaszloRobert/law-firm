@@ -31,7 +31,7 @@ module.exports = {
       xl: "1700px",
     },
     backgroundImage: {
-      "hero-pattern": "url('/src/assets/hero-bg.png')",
+      "hero-pattern": "url('/src/assets/hero-bg.webp')",
       "title-separator-big": "url('/src/assets/title-separator-big.png')",
       "contact-bg": "url('/src/assets/contact-bg.png')",
       "services-bg": "url('/src/assets/services-bg.png')",
