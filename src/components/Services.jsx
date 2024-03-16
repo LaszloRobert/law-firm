@@ -136,16 +136,25 @@ const ServiceCard = ({ index, title, description }) => {
             >
                 {/* Front side of the card */}
                 <motion.div
-                    className={`${isFlipped ? "hidden" : "relative"} px-5 py-6 rounded-md shadow-md shadow-secondary overflow-hidden`}
+                    className="px-5 py-6 rounded-md shadow-md shadow-secondary overflow-hidden"
                 >
                     <h2 className='font-bold text-center mx-auto text-tertiary'>{title}</h2>
                 </motion.div>
 
                 {/* Hover front side */}
+                <div
+                    className={`${isFlipped ? "hidden" : "absolute"} h-max absolute inset-0 px-5 py-6 rounded-md shadow-md bg-secondary  overflow-hidden`}
+                    style={{
+                        clipPath: BOTTOM_RIGHT_CLIP,
+                    }}
+                    ref={scope} // Reference for measuring height
+                >
+                    <h2 className='font-bold text-center mx-auto text-tertiary'>{title}</h2>
+                </div>
 
                 {/* Back side of the card */}
                 <motion.div
-                    className={`${isFlipped ? "relative " : "absolute"} px-5 py-6 rounded-md bg-secondary text-white inset-0`}
+                    className={`${isFlipped ? "relative -mt-[70px]" : "absolute"} px-5 py-6 rounded-md bg-secondary text-white inset-0`}
                     style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
                     ref={backRef} // Reference for measuring height
                 >
