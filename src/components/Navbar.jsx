@@ -10,9 +10,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import AppointmentButton from './reusableComponents/AppointmentButton'
 import { style } from '../style'
 import { navbarMobileVariants, mobileUlVariant, liVariants } from '../utils/motion'
-import { debounce } from 'lodash';
-
-
 
 const Navbar = () => {
     const { t, ready } = useTranslation();
@@ -33,14 +30,12 @@ const Navbar = () => {
         }
     }, []);
 
-    // const handleCountryDropdownClick = (event) => {
-    //     event.preventDefault();
-    //     event.stopPropagation(); // Stops the click event from propagating
-    //     setToggle(!toggle)
-    // };
-    const handleCountryDropdownClick = debounce(() => {
-        setToggle(!toggle);
-    }, 300, { leading: true, trailing: false });
+    const handleCountryDropdownClick = (event) => {
+        event.preventDefault();
+        event.stopPropagation(); // Stops the click event from propagating
+        setToggle(!toggle)
+    };
+
 
     const handleLanguageChange = useCallback((language) => {
         setCurrentLanguageCode(language);
