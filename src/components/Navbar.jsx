@@ -32,12 +32,10 @@ const Navbar = () => {
         }
     }, []);
 
-    // const handleLanguageChange = useCallback((language) => {
-    //     setCurrentLanguageCode(language);
-    //     i18next.changeLanguage(language);
-    //     const theDropdown = FlowbiteInstances.getInstance('Dropdown', 'dropdown');
-    //     theDropdown.hide();
-    // }, [setCurrentLanguageCode]);
+    const handleCountryDropdownClick = (event) => {
+        event.stopPropagation(); // Stops the click event from propagating
+        setDropdownOpen(!dropdownOpen);
+    };
 
     const handleLanguageChange = useCallback((language) => {
         setCurrentLanguageCode(language);
@@ -139,7 +137,7 @@ const Navbar = () => {
                         <li key="countries"
                         >
                             <button id="countryDropdown"
-                                onClick={() => setDropdownOpen(!dropdownOpen)}
+                                onClick={handleCountryDropdownClick}
                             >
                                 <ReactCountryFlag
                                     alt="iconita limba selectata"
