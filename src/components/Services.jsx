@@ -152,7 +152,7 @@ const ServiceCard = ({ index, title, description }) => {
                                 transition={{ duration: 0.3 }}
                             >
                                 <h2 className='font-medium text-center mb-2'>{title}</h2>
-                                <p className='leading-relaxed whitespace-pre-line'>{description}</p>
+                                <p className='leading-relaxed tracking-wide whitespace-pre-line'>{description}</p>
                             </motion.div>
 
                         </div>

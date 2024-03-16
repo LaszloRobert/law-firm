@@ -44,14 +44,14 @@ const TeamCard = ({ index, person }) => {
                 <div className="-mt-4 p-6 text-center">
                     <h5 className="mb-2 text-lg font-bold">{person.title}</h5>
                     <p className="text-neutral-500">{t(`${person.description}`)}</p>
-                    <p className='text-secondary'>{person.phone}</p>
+                    <a href={`tel:${person.phone}`}><p className='text-secondary'>{person.phone}</p></a>
                     <p className='text-neutral-500'>{person.email}</p>
                 </div>
             </div >
         </motion.div >
     )
 }
-
+<a href="tel:+40744851882" className='text-white text-[0.9rem]'>+40 744 851 882</a>
 
 
 
