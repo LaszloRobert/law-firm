@@ -12,8 +12,7 @@ const About = () => {
             <div className='flex sm:flex-row flex-col justify-between'>
                 <motion.div
                     variants={slideIn("left", "tween", 0.2, 1)}
-                    className='md:w-[50%] w-full md:ml-5'
-                >
+                    className='md:w-[50%] w-full md:ml-5'>
                     <p
                         className='text-[20px] text-[#645858] text-justify'
                     >
