@@ -136,7 +136,7 @@ const ServiceCard = ({ index, title, description }) => {
             >
                 {/* Front side of the card */}
                 <motion.div
-                    className={`${isFlipped ? "hidden" : "relative"}px-5 py-6 rounded-md shadow-md shadow-secondary overflow-hidden`}
+                    className={`${isFlipped ? "hidden" : "relative"} px-5 py-6 rounded-md shadow-md shadow-secondary overflow-hidden`}
                 >
                     <h2 className='font-bold text-center mx-auto text-tertiary'>{title}</h2>
                 </motion.div>
@@ -154,7 +154,7 @@ const ServiceCard = ({ index, title, description }) => {
 
                 {/* Back side of the card */}
                 <motion.div
-                    className={`${isFlipped ? "relative -mt-20" : "absolute"} px-5 py-6 rounded-md bg-secondary text-white inset-0`}
+                    className={`${isFlipped ? "relative" : "absolute"} px-5 py-6 rounded-md bg-secondary text-white inset-0`}
                     style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
                     ref={backRef} // Reference for measuring height
                 >
