@@ -203,6 +203,7 @@
         "Message": "Message",
         "Phone": "Phone",
         "Address": "Address",
+        "ContactFormTitle": "Contact form",
         "UploadFile": "Upload file",
         "UploadingFile": "Uploading file...",
         "UploadFileError": "The file could not be uploaded",

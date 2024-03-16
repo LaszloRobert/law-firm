@@ -6,7 +6,7 @@ const AppointmentSuggestion = () => {
     const { t } = useTranslation();
 
     return (
-        <div className="relative -top-8 left-1/2 -translate-x-1/2 w-full sm:w-[80%] md:w-[1200px] -mb-8">
+        <div className="relative -top-8 left-1/2 -translate-x-1/2 w-full sm:w-[80%] md:w-[1200px] -mb-8 z-[2]">
             <div className='gradient sm:rounded-lg opacity-90 p-6 md:p-9 flex flex-col md:flex-row justify-evenly'>
 
                 <p className='text-primary text-[27px] tracking-wide mx-auto md:mx-0'>

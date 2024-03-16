@@ -97,6 +97,7 @@ const Contact = () => {
                     id="form"
                     variants={slideIn("left", "tween", 0.4, 1)}
                 >
+                    <h3 className="flex md:hidden justify-center text-tertiary font-black  text-[25px] mb-5">{t("GetInTouch.ContactFormTitle")}</h3>
                     <form id="contactForm" onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4" >
                         <input className={style.inputsForm} type="text" name="name" placeholder={t("GetInTouch.Name")} value={form.name} onChange={handleChange} required />
                         <input className={`${style.inputsForm}`} type="email" name="email" placeholder={t("GetInTouch.Email")} value={form.email} onChange={handleChange} required />
@@ -132,8 +133,9 @@ const Contact = () => {
                     </form>
                 </motion.div>
 
+
                 <motion.div id="cards"
-                    className="flex flex-col space-y-4 md:space-y-10 md:w-[30%] w-full mb-4 overflow-x-hidden"
+                    className="flex flex-col space-y-4 md:space-y-10 md:w-[30%] w-full mb-4 p-2 md:p-0 overflow-x-hidden"
                     variants={slideIn("right", "tween", 0.4, 1)}
                 >
                     <Card Icon={LocationSVG} title={t("GetInTouch.Address")} text={"Calea Dorobanților 22, Cluj-Napoca 400121"} />
@@ -151,7 +153,7 @@ const Contact = () => {
 }
 
 const Card = ({ Icon, title, text }) => (
-    <div className="flex  shadow-md shadow-secondary border border-secondary rounded justify-around items-center h-[100px] p-6 duration-200 card">
+    <div className="flex shadow-md shadow-secondary border border-secondary rounded justify-around items-center h-[100px] p-6 duration-200 card">
         <Icon
             className="w-10 h-10  text-secondary icon"
         />
