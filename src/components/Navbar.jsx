@@ -188,7 +188,7 @@ const Navbar = () => {
                         variants={navbarMobileVariants}
                         initial={false}
                         animate={toggle ? "opened" : "closed"}
-                        className={` fixed flex-col top-0 right-0 bg-[#333333] w-[50%] h-full items-center ease-in-out duration-500 `}>
+                        className={` fixed flex-col top-0 right-0 bg-[#333333] w-[50%] h-full items-center`}>
 
                         <img
                             src={close}
@@ -197,14 +197,14 @@ const Navbar = () => {
                             onClick={() => setToggle(!toggle)}
                         />
 
-                        <ul
+                        <motion.ul
                             variants={mobileUlVariant}
                             initial="closed"
                             animate={toggle ? "opened" : "closed"}
                             className='w-full px-4 py-3'>
 
                             {navLinks.map((link) => (
-                                <li
+                                <motion.li
                                     variants={liVariants}
                                     key={link.id}
                                     className="py-3 border-b border-b-[#4b4b4b] text-[#c69c67]"
@@ -213,22 +213,22 @@ const Navbar = () => {
                                         onClick={() => scrollToSection(link.id)}
                                         className='relative'>{t(link.name)}
                                     </Link>
-                                </li>
+                                </motion.li>
                             ))}
-                            <li
+                            <motion.li
                                 variants={liVariants}
                                 key="appointmentMobile"
                                 className='text-center py-3'
                             >
                                 <AppointmentButton className={style.navbarProgrammingButton} />
-                            </li>
-                            <li
+                            </motion.li>
+                            <motion.li
                                 variants={liVariants}
                                 className='flex items-center justify-center gap-2 p-2'>
                                 <Phone className='w-[1.5rem] text-secondary h-auto object-contain' />
                                 <a href="tel:+40744851882" className='text-white text-[0.9rem]'>+40 744 851 882</a>
-                            </li>
-                            <li
+                            </motion.li>
+                            <motion.li
                                 key='countriesMobile'
                                 variants={liVariants}
                                 className='flex items-center justify-center gap-3 p-2'>
@@ -242,9 +242,9 @@ const Navbar = () => {
                                     />
                                 )
                                 )}
-                            </li>
+                            </motion.li>
 
-                        </ul>
+                        </motion.ul>
                     </motion.div>
                 </div>
             </div>

@@ -10,9 +10,6 @@ html {
 
 }
 
-nav {
-  touch-action: manipulation;
-}
 
 * {
   margin: 0;
