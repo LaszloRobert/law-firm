@@ -136,7 +136,7 @@ const ServiceCard = ({ index, title, description }) => {
             >
                 {/* Front side of the card */}
                 <motion.div
-                    className="px-5 py-6 rounded-md shadow-md shadow-secondary overflow-hidden"
+                    className={`${isFlipped ? "hidden" : "relative"}px-5 py-6 rounded-md shadow-md shadow-secondary overflow-hidden`}
                 >
                     <h2 className='font-bold text-center mx-auto text-tertiary'>{title}</h2>
                 </motion.div>
