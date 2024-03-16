@@ -180,7 +180,7 @@ const Navbar = () => {
                             src={menu}
                             alt="meniu hamburger"
                             className='menu-icon w-[20px]  object-contain cursor-pointer'
-                            onClick={() => { handleCountryDropdownClick() }}
+                            onClick={(event) => { handleCountryDropdownClick(event) }}
                         />
                     </div>
 
