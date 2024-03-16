@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react';
 import { SectionWrapper } from '../hoc'
 import { motion, useAnimate, AnimatePresence } from 'framer-motion'
 import { useTranslation } from "react-i18next";
@@ -100,10 +100,88 @@ const ServiceCard = ({ index, title, description }) => {
             clipPath: EXIT_KEYFRAMES[side],
         });
     };
+    const frontRef = useRef();
+    const backRef = useRef();
+    const [height, setHeight] = useState('auto');
+    const [isFlipped, setIsFlipped] = useState(false);
+    const [showFront, setShowFront] = useState(true);
+    useEffect(() => {
+        // Adjust the height based on the flipped state
+        const frontHeight = frontRef.current.offsetHeight;
+        const backHeight = backRef.current.offsetHeight;
 
+        // Set height based on whether the card is flipped or not
+        if (isFlipped) {
+            setHeight(backHeight);
+        } else {
+            setHeight(frontHeight);
+        }
+    }, [isFlipped]); // Re-run this effect when isFlipped changes
+
+
+
+    const cardVariants = {
+        front: { rotateY: 0, height: "70px" },
+        back: { rotateY: 180, height: height },
+    };
+
+    const handleFlip = () => {
+        setIsFlipped(!isFlipped);
+    };
     return (
         <>
             <motion.div
+                onMouseEnter={(e) => {
+                    handleMouseEnter(e);
+                }}
+                onMouseLeave={(e) => {
+                    handleMouseLeave(e);
+                }}
+                variants={fadeIn("up", "spring", index * 0.2, 0.75)}
+                className='relative w-[21rem] cursor-pointer m-2'
+                onClick={handleFlip}>
+
+                <motion.div
+                    className="relative"
+                    style={{ transformStyle: "preserve-3d" }} // Set the dynamic height here
+                    variants={cardVariants}
+                    animate={isFlipped ? "back" : "front"}
+                    transition={{ duration: 0.8 }}
+                >
+                    {/* Front side of the card */}
+                    <motion.div
+                        className=" px-5 py-6 rounded-md shadow-md shadow-secondary overflow-hidden"
+                        style={{ backfaceVisibility: "hidden" }}
+                        ref={frontRef} // Reference for measuring height
+                        exit={{ opacity: 0, transition: { duration: 0.8 } }}
+                    >
+                        <h2 className='font-bold text-center mx-auto text-tertiary'>{title}</h2>
+                    </motion.div>
+
+                    {/* Front side of the card */}
+                    <div
+                        className=" h-[72px] absolute inset-0 px-5 py-6 rounded-md shadow-md bg-secondary  overflow-hidden"
+                        style={{
+                            clipPath: BOTTOM_RIGHT_CLIP,
+                        }}
+                        ref={scope} // Reference for measuring height
+                    >
+                        <h2 className='font-bold text-center mx-auto text-tertiary'>{title}</h2>
+                    </div>
+
+                    {/* Back side of the card */}
+                    <motion.div
+                        className={`${isFlipped ? "relative -mt-20" : "absolute"} px-5 py-6 rounded-md bg-secondary text-white inset-0`}
+                        style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+                        ref={backRef} // Reference for measuring height
+                    >
+
+                        <p className='leading-relaxed tracking-wide whitespace-pre-line'>{description}</p>
+                    </motion.div>
+                </motion.div>
+
+            </motion.div>
+            {/* <motion.div
                 onMouseEnter={(e) => {
                     handleMouseEnter(e);
                 }}
@@ -159,10 +237,24 @@ const ServiceCard = ({ index, title, description }) => {
                     </>
                 )
                 }
-            </AnimatePresence>
+            </AnimatePresence> */}
         </>
     );
 }
+
+const Modal = ({ isOpen, title, description, onClose }) => {
+    if (!isOpen) return null;
+
+    return (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center">
+            <div className="bg-white p-4 rounded-lg max-w-md w-full">
+                <button onClick={onClose}>Close</button>
+                <h2 className="font-bold text-center mx-auto">{title}</h2>
+                <p className="text-black">{description}</p>
+            </div>
+        </div>
+    );
+};
 
 const Overlay = ({ onClick }) => {
     return (
