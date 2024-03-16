@@ -40,7 +40,7 @@ const Navbar = () => {
     // };
     const handleCountryDropdownClick = debounce(() => {
         setToggle(!toggle);
-    }, 100, { leading: true, trailing: false });
+    }, 300, { leading: true, trailing: false });
 
     const handleLanguageChange = useCallback((language) => {
         setCurrentLanguageCode(language);
