@@ -35,23 +35,182 @@
         "id": "appointment",
         "name": "KAPCSOLAT"
     },
-    "Footer": {
-        "createdBy": "Készítette az Evolve Software Solutions"
-    },
     "SectionTitles": {
-        "servicesTitle": "Szolgáltatásaink",
-        "aboutTitle": "Rólunk",
-        "contactTitle": "Elérhetőség"
+        "about": "Rólunk",
+        "services": "Szolgáltatásaink",
+        "team": "Csapat",
+        "contact": "Elérhetőség"
     },
     "ServicesSection": [
         {
             "id": "service1",
             "title": "Jogi tanácsadás",
             "description": "Irodánk széleskörű jogi szolgáltatásokat kínál, úgy magánszemélyeknek, mint vállalatoknak és közintézményeknek is egyaránt. Ügyfeleink érdekeinek szakszerű képviselete állandó megbízás alapján, vagy egyszeri, konkrét jogi esetre szorítkozva valósul meg"
+        },
+        {
+            "id": "service2",
+            "title": "Szerződések joga",
+            "description": [
+                "\u2022jogi tanácsadás és képviselet a szerződések teljesítéséből, érvénytelenítéséből, felbontásából, felmondásából vagy elállásból fakadó jogvitákban",
+                "\n\u2022jogi tanácsadás a polgári és kereskedelmi szerződések tárgyalási szakaszában",
+                "\n\u2022egy- és kétoldalú adásvételi ígéretek, adásvételi szerződések véleményezése, valamint szerkesztése",
+                "\n\u2022bérleti, vállalkozási és szolgáltatási szerződések megfogalmazása és szerkesztése",
+                "\n\u2022szakszerű tanácsadás és képviselet a közjegyzők előtt, bármilyen jogi aktus megkötésekor, valamint a pénzügyi és banki intézmények előtt, hitelszerződések megkötésekor."
+            ]
+        },
+        {
+            "id": "service3",
+            "title": "Ingatlanok visszaszolgáltatása",
+            "description": [
+                "\u2022a földtulajdonra vonatkozó magántulajdonjogok helyreállítása a földalapról szóló 18/1991. sz. törvény értelmében",
+                "\n\u2022jóvátételi intézkedések azon természetes személyek és örököseik számára, akiknek lakóingatlana a 113/1995. sz. törvény értelmében állami tulajdonba került",
+                "\n\u2022jóvátételi intézkedések az 1945. március 6. és 1989. december 22. között, az állam vagy bármely más jogi személy által jogalap nélkül birtokba vett ingatlanok után, a 10/2001 sz. törvény alapján"
+            ]
+        },
+        {
+            "id": "service4",
+            "title": "Földhivatali intézkedések",
+            "description": [
+                "\u2022ingatlan-nyilvántartási eljárás",
+                "\n\u2022telekkönyvi kiigazítási kereset",
+                "\n\u2022telekkönyvi igazolási eljárás"
+            ]
+        },
+        {
+            "id": "service5",
+            "title": "Öröklési jog",
+            "description": [
+                "\u2022jogi tanácsadás és képviselet a közjegyzői hagyatéki eljárásokban",
+                "\n\u2022jogi tanácsadás és képviselet a bíróságok előtti hagyatéki eljárásokban",
+                "\n\u2022jogi tanácsadás és képviselet a megállapodás vagy bírósági eljárás útján történő vagyonmegosztási eljárásokban",
+                "\n\u2022szaktanácsadás a különböző végrendelkezési formák megvalósításával kapcsolatosan"
+            ]
+        },
+        {
+            "id": "service6",
+            "title": "Családjog",
+            "description": [
+                "\u2022szaktanácsadás és képviselet a válóperes eljárások során, a közjegyző vagy a bíróság előtt",
+                "\n\u2022a házassági közösség felszámolása, vitás vagy nem vitás eljárásokban, jogi tanácsadás és képviselet a közös vagyon megosztása során",
+                "\n\u2022jogi tanácsadás és képviselet a kiskorúakkal kapcsolatos eljárásokban: kiskorúak felügyeleti joga, kiskorúakkal való személyes kapcsolattartás a nem honos szülő számára, gyermektartásdíj meghatározása"
+            ]
+        },
+        {
+            "id": "service7",
+            "title": "Kötelmi jog",
+            "description": [
+                "Szaktanácsadás és jogi képviselet a különböző kötelemkeletkeztető tényekből fakadó jogvitákban, mint például:",
+                "\u2022károkozás",
+                "\n\u2022megbízás nélküli ügyvitel",
+                "\n\u2022tartozatlan fizetés",
+                "\n\u2022jogalap nélküli gazdagodás, stb"
+            ]
+        },
+        {
+            "id": "service8",
+            "title": "Dologi jog",
+            "description": [
+                "\u2022jogi tanácsadás és képviselet a magántulajdonhoz fűződő jogok védelmében, a visszavételi, az elkerítési, valamint a megtagadási keresetekben",
+                "\n\u2022a birtoklás védelme",
+                "\n\u2022a haszonélvezeti, használati, szolgalmi, felülépítményi és lakásjog védelme",
+                "\n\u2022a magántulajdonjogok megszerzése elbirtoklás, valamint természetes vagy mesterséges úton történő ingatlanhoz való csatlakozással",
+                "\n\u2022jogi tanácsadás és képviselet a közérdekű okokból történő kisajátítással kapcsolatos ügyekben"
+            ]
+        },
+        {
+            "id": "service9",
+            "title": "Különleges eljárások",
+            "description": [
+                "\u2022gyámság és gondnokság alá helyezés",
+                "\n\u2022holtnak nyilvánítás",
+                "\n\u2022védelmi és ideiglenes intézkedések",
+                "\n\u2022bírosági elnöki meghagyás",
+                "\n\u2022fizetési meghagyásos eljárás",
+                "\n\u2022csökkentett értékre vonatkozó kérelem",
+                "\n\u2022kilakoltatás a jogtalanul használt vagy elfoglalt ingatlanokból",
+                "\n\u2022bírósági óvadék"
+            ]
+        },
+        {
+            "id": "service10",
+            "title": "Pénzügyi jog és bankjog",
+            "description": [
+                "\u2022tanácsadás és képviselet a pénzügyi és banki intézményekkel kötött szerződések tisztességtelen feltételeivel kapcsolatban",
+                "\n\u2022a banki tevékenységekkel kapcsolatos tanácsadás",
+                "\n\u2022pénzügyi és operatív lízinggel kapcsolatos szaktanácsadás",
+                "\n\u2022ogi tanácsadás a pénzügyi tranzakciók megfelelőségével és jogszerűségével kapcsolatban"
+            ]
+        },
+        {
+            "id": "service11",
+            "title": " Adatvédelem",
+            "description": [
+                "\u2022átfogó jogszabályi tájékoztató a személyes adatok feldolgozásával kapcsolatban, az egyének védelméről és az ilyen adatok szabad áramlásáról szóló, 2016. április 27-i 2016/697/EU európai parlamenti és tanácsi rendelet rendelkezéseiről",
+                "\n\u2022GDPR-ellenőrzés:",
+                "\n1) az adatkezelő értékelő jelentésének elkészítése, HR dokumentumok megszerkesztése",
+                "\n2) adatfeldolgozókkal és társult adatkezelőkkel kötött megállapodások tervezetének elkészítése",
+                "\n3) adatfeldolgozás és az ehhez tartozó nyilvántartás vezetése",
+                "\n4) a személyzet képzése",
+                "\n\u2022jogi tanácsadás és képviselet a Nemzeti Adatvédelmi Hatóság, valamint a bíróságok előtt"
+            ]
+        },
+        {
+            "id": "service12",
+            "title": "Büntetőjog",
+            "description": [
+                "\u2022jogi tanácsadás és képviselet a vádhatóság és a bíróságok előtt, a büntetőeljárás összes szakaszában"
+            ]
+        },
+        {
+            "id": "service13",
+            "title": "Szabálysértések",
+            "description": [
+                "\u2022jogi tanácsadás és képviselet a szabálysértési jegyzőkönyv és az abban foglalt szabálysértési szankciók megfellebbezése során"
+            ]
+        },
+        {
+            "id": "service14",
+            "title": "Társasági jog",
+            "description": [
+                "\u2022jogi tanácsadás a gazdasági társaságok alapításával, működésével, megszűnésével, felszámolásával és átszervezésével kapcsolatban"
+            ]
+        },
+        {
+            "id": "service15",
+            "title": "Munkajog",
+            "description": [
+                "\u2022jogi tanácsadás a fegyelmi eljárásokban",
+                "\n\u2022munkaügyi vitákban történő közvetítés",
+                "\n\u2022fegyelmi büntetések elleni fellebbezés",
+                "\n\u2022jogi tanácsadás és képviselet a munkahelyi balesetekkel, tisztességtelen elbocsátásokkal és kártérítési igényekkel kapcsolatos bírósági eljárásokban"
+            ]
         }
     ],
     "AppointmentSuggestion": {
         "id": "appointmentSuggestion",
         "text": "Szüksége van jogi tanácsadásra vagy jogi segítségre?"
+    },
+    "TeamSection": {
+        "coordinatorText": "Ügyvéd",
+        "associatedText": "Társult Ügyvéd",
+        "collaboratorText": "Közreműködő Ügyvéd"
+    },
+    "GetInTouch": {
+        "Name": "Név",
+        "Email": "Email cím",
+        "Subject": "Tárgy",
+        "Message": "Megjegyzések",
+        "Phone": "Telefon szám",
+        "Address": "Cím ",
+        "UploadFile": "Fájl feltöltés",
+        "UploadingFile": "Fájl feltöltése...",
+        "UploadFileError": "A fájlt nem sikerült feltölteni",
+        "EmailSent": "Email elküldve",
+        "EmailError": "Az e-mailt nem sikerült elküldeni",
+        "EmailUploadingError": "A fájl betöltődik, kérjük, várjon...",
+        "SubmitButton": "Küldés"
+    },
+    "Footer": {
+        "createdBy": "Készítette az Evolve Software Solutions"
     }
 }

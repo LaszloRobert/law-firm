@@ -35,13 +35,11 @@
         "id": "appointment",
         "name": "PROGRAMARE"
     },
-    "Footer": {
-        "createdBy": "Realizat de Evolve Software Solutions."
-    },
     "SectionTitles": {
-        "servicesTitle": "Servicii",
-        "aboutTitle": "Despre",
-        "contactTitle": "Contact"
+        "about": "Despre",
+        "services": "Servicii",
+        "team": "Echipa",
+        "contact": "Contact"
     },
     "ServicesSection": [
         {
@@ -100,11 +98,11 @@
             "description": [
                 "\u2022informare legislativă completă cu privire la prevederile Regulamentului UE nr. 2016/697 al Parlamentului European și al Consiliului din 27 aprilie 2016, referitare la protecţia persoanelor fizice, în ceea ce priveşte prelucrarea datelor cu caracter personal şi privind libera circulaţie a acestor date",
                 "\n\u2022audit GDPR:",
-                "\n1)redactarea raportului de evaluare a operatorului, a documentelor de resurse umane",
-                "\n2)redactarea acordurilor cu persoanele împuternicite și operatorii asociați",
-                "\n3)prelucrarea de date și întocmirea evidențelor",
-                "\n4)instruirea presonalului",
-                "\nasistență juridică și reprezentare în fața Autorității Naționale de Protecție a Datelor cu Caracter Personal și a instanțelor de judecată"
+                "\n1) redactarea raportului de evaluare a operatorului, a documentelor de resurse umane",
+                "\n2) redactarea acordurilor cu persoanele împuternicite și operatorii asociați",
+                "\n3) prelucrarea de date și întocmirea evidențelor",
+                "\n4) instruirea presonalului",
+                "\n\u2022asistență juridică și reprezentare în fața Autorității Naționale de Protecție a Datelor cu Caracter Personal și a instanțelor de judecată"
             ]
         },
         {
@@ -137,6 +135,11 @@
         "id": "appointmentSuggestion",
         "text": "Ai nevoie de consultanță sau asistență juridică?"
     },
+    "TeamSection": {
+        "coordinatorText": "Avocat coordonator",
+        "associatedText": "Avocat asociat",
+        "collaboratorText": "Avocat colaborator"
+    },
     "GetInTouch": {
         "Name": "Nume",
         "Email": "Email",
@@ -149,6 +152,10 @@
         "UploadFileError": "Fișierul nu a putut fi încărcat",
         "EmailSent": "Email trimis cu succes",
         "EmailError": "Email-ul nu a putut fi trimis",
+        "EmailUploadingError": "Fișierul se încarcă, vă rugăm așteptați...",
         "SubmitButton": "Trimite"
+    },
+    "Footer": {
+        "createdBy": "Realizat de Evolve Software Solutions."
     }
 }

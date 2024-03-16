@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { SectionWrapper } from '../hoc'
-import { textVariant, slideIn } from '../utils/motion'
+import { slideIn } from '../utils/motion'
 import React from 'react'
 import { style } from '../style'
 import { motion } from "framer-motion"
@@ -45,6 +45,7 @@ const Contact = () => {
     }
 
     const handleFileUpload = (file) => {
+        setLoading(true);
         setFileName(file.name); // Set the file name immediately for UI feedback
         uploadFile(file, setUploadProgress)
             .then((downloadURL) => {
@@ -53,10 +54,16 @@ const Contact = () => {
             .catch((error) => {
                 toast.error(t("GetInTouch.UploadFileError")); // Display a toast notification for the error
             });
+        setLoading(false);
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (uploadProgress > 0 && uploadProgress < 100) {
+            toast.warning(t("GetInTouch.EmailUploadingError"));
+            return;
+        }
+        setLoading(true);
         setLoading(true);
         sendEmail(form, downloadURL)
             .then(() => {
@@ -70,11 +77,14 @@ const Contact = () => {
                     comment: '',
                     attachment: ''
                 })
+                setUploadProgress(0); // Reset the file name
+                setDownloadURL(''); // Reset the download URL
             },
                 () => {
                     setLoading(false)
                     toast.error(t("GetInTouch.EmailError"));
                 })
+        setLoading(false);
     }
 
 
@@ -82,9 +92,6 @@ const Contact = () => {
         <div className="max-w-7xl mx-auto">
             <div className="bg-contact-bg bg-cover absolute top-0 left-0 right-0 bottom-0 z-[-1] "> </div>
             <div className="bg-contactOverlay w-full h-full absolute top-0 right-0 bottom-0 left-0  z-[-1]"></div>
-            <motion.div variants={textVariant()}>
-                <h2 className={`${style.sectionTitles} section-title-underline`}>{t("SectionTitles.contactTitle")}</h2>
-            </motion.div>
             <div className="flex md:flex-row flex-col-reverse justify-around">
                 <motion.div
                     id="form"
@@ -100,7 +107,7 @@ const Contact = () => {
                             className="bg-white text-[14px] flex items-center justify-between cursor-pointer col-span-2 border border-1 border-gray-400 rounded p-2 text-[#7e838f]"
                             onMouseEnter={() => setIsHovered(true)}
                             onMouseLeave={() => setIsHovered(false)}>
-                            {uploadProgress === 100 ? fileName : uploadProgress > 0 ? t("UploadFile.UploadingFile") : t("GetInTouch.UploadFile")}
+                            {uploadProgress === 100 ? fileName : uploadProgress > 0 ? t("GetInTouch.UploadingFile") : t("GetInTouch.UploadFile")}
                             <input id="file-upload" type="file" className="hidden" name="attachment" onChange={handleChange} />
                             {uploadProgress > 0 && uploadProgress < 100 ? (
                                 <BouncingCirclesSVG className="w-8 text-secondary" /> // Show spinner when upload is in progress
@@ -111,12 +118,17 @@ const Contact = () => {
                             )}
                         </label>
                         {/* Upload progress indicator */}
-                        {uploadProgress > 0 && (
+                        {uploadProgress > 0 && uploadProgress < 100 && (
                             <motion.div className="relative bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 col-span-2">
                                 <motion.div className="bg-secondary h-2.5 rounded-full" style={{ width: `${uploadProgress}%` }} />
                             </motion.div>
                         )}
-                        <button className="bg-secondary leading-9 text-[14px] text-white w-[120px] col-start-2 justify-self-end border rounded hover:bg-white hover:text-secondary hover:scale-110 duration-200" type="submit">{t("GetInTouch.SubmitButton")}</button>
+                        <button
+                            className="bg-secondary leading-9 text-[14px] text-white w-[120px] col-start-2 justify-self-end border rounded hover:bg-white hover:text-secondary hover:scale-110 duration-200"
+                            type="submit">
+                            {t("GetInTouch.SubmitButton")}
+
+                        </button>
                     </form>
                 </motion.div>
 
@@ -125,16 +137,14 @@ const Contact = () => {
                     variants={slideIn("right", "tween", 0.4, 1)}
                 >
                     <Card Icon={LocationSVG} title={t("GetInTouch.Address")} text={"Calea Dorobanților 22, Cluj-Napoca 400121"} />
-                    <Card Icon={PhoneSVG} title={t("GetInTouch.Phone")} text={"+40 744 851 882"} />
+                    <Card Icon={PhoneSVG} title={t("GetInTouch.Phone")} text={<a href="tel:+40744851882">+40 744 851 882</a>} />
                     <Card Icon={EmailSVG} title={t("GetInTouch.Email")} text={"rusa.office@yahoo.com"} />
                 </motion.div>
             </div >
 
-            <div className="bg-title-separator-big bg-cover h-[10px] mt-20 mb-10 "></div>
-
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2732.6488675780297!2d23.59954431224158!3d46.77181727100507!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47490e9e5df8df25%3A0xe3ece6f1e96e166a!2sRusa%20Victor!5e0!3m2!1sro!2sro!4v1708861556769!5m2!1sro!2sro4"
-                className="w-full h-[400px] rounded-lg"
-                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                className="w-full h-[400px] rounded-lg mt-20"
+                allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
         </div >
 
     )

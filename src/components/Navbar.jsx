@@ -18,6 +18,7 @@ const Navbar = () => {
     const [currentLanguageCode, setCurrentLanguageCode] = useState(
         document.cookie.split("; ").find((row) => row.startsWith("i18next"))?.split("=")[1] ?? "ro")
     const [toggle, setToggle] = useState(false);
+
     //change nav color when scrolling
     const [scrolledDown, setscrolledDown] = useState(false);
 
@@ -60,7 +61,6 @@ const Navbar = () => {
         <nav
             className={`${scrolledDown ? "bg-zinc-900" : "bg-navBarBg"} bg-navBarBg w-full top-0 fixed ease-in-out duration-700 z-20`}
         >
-
             <div
                 className='max-w-7xl mx-auto'
             >
@@ -68,7 +68,7 @@ const Navbar = () => {
                     {!scrolledDown && (
                         <motion.div id="firstRow" className='hidden sm:block'
                             initial={{ opacity: 0, y: -20, height: 0 }}
-                            animate={{ opacity: 1, y: 0, height: "52px" }} // Use "auto" for height to let it grow as needed
+                            animate={{ opacity: 1, y: 0, height: "52px" }}
                             exit={{ opacity: 0, y: -20, height: 0, transition: { duration: 0.5 } }}
 
                         >
@@ -130,7 +130,8 @@ const Navbar = () => {
                                     aria-labelledby="countryDropdown"
                                     className='-mt-2'>
                                     {languages.filter(language => language.code !== currentLanguageCode).map((language) => (
-                                        <li key={language.code}
+                                        <li
+                                            key={language.code}
                                             onClick={() => handleLanguageChange(language.code)}
 
                                         >
@@ -207,10 +208,12 @@ const Navbar = () => {
                                 <a href="tel:+40744851882" className='text-white text-[0.9rem]'>+40 744 851 882</a>
                             </motion.li>
                             <motion.li
+                                key='countriesMobile'
                                 variants={liVariants}
                                 className='flex items-center justify-center gap-3 p-2'>
                                 {languages.map((language) => (
                                     <ReactCountryFlag
+                                        key={language.code}
                                         alt="iconita limba selectata"
                                         countryCode={language.code}
                                         onClick={() => handleLanguageChange(language.code)}

@@ -2,14 +2,10 @@ import React, { useState } from 'react'
 import { SectionWrapper } from '../hoc'
 import { motion, useAnimate, AnimatePresence } from 'framer-motion'
 import { useTranslation } from "react-i18next";
-import { style } from '../style'
-import { textVariant, fadeIn } from "../utils/motion"
-import TitleSeparator from "../assets/title-separator-small.svg?react"
-import SectionTitle from './reusableComponents/SectionTitle'
+import { fadeIn } from "../utils/motion"
 
 const Services = () => {
     const { t, ready } = useTranslation();
-
     if (!ready) return
     const services = t("ServicesSection", { returnObjects: true });
     return (
@@ -17,7 +13,6 @@ const Services = () => {
             <div className="bg-services-bg bg-fixed bg-cover absolute top-0 left-0 right-0 bottom-0 z-[-1] "> </div>
             <div className="bg-contactOverlay w-full h-full absolute top-0 right-0 bottom-0 left-0  z-[-1]"></div>
             <div className="max-w-7xl mx-auto">
-                <SectionTitle title="SectionTitles.servicesTitle" />
                 <div
                     className='flex flex-wrap gap-8 justify-center align-center'
                 >
@@ -142,7 +137,6 @@ const ServiceCard = ({ index, title, description }) => {
                     <>
                         <Overlay onClick={handleClose} />
                         <div className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30'>
-
                             <motion.div
                                 className='w-[20rem] bg-[#DCC080] p-6 shadow-lg border-2 border-secondary'
                                 initial={{ scale: 0.1, opacity: 0 }}

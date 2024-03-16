@@ -33,13 +33,13 @@
     },
     "Appointment": {
         "id": "appointment",
-        "name": "Appointment"
+        "name": "APPOINTMENT"
     },
-    "Footer": {},
     "SectionTitles": {
-        "servicesTitle": "Services",
-        "aboutTitle": "About",
-        "contactTitle": "Contact"
+        "about": "About",
+        "services": "Services",
+        "team": "Team",
+        "contact": "Contact"
     },
     "ServicesSection": [
         {
@@ -60,7 +60,7 @@
         },
         {
             "id": "service3",
-            "title": "Restitution of unlawfully seized real estate",
+            "title": "Recovery of unjustly seized real estate",
             "description": [
                 "\u2022restoration and establishment of private ownership rights over land, in accordance with Law no. 18/1991 on land resources",
                 "\n\u2022restorative measures for individuals and their heirs whose residential properties have been expropriated by the state, as stipulated in Law no. 113/1995",
@@ -147,11 +147,11 @@
             "title": "GDPR",
             "description": [
                 "\u2022comprehensive legislative information on EU Regulation no. 2016/679 of the European Parliament and of the Council of 27 April 2016, concerning the protection of natural persons regarding the processing of personal data and the free movement of such data",
-                "\nGDPR audit",
-                "\n\u2022preparation of the operator's evaluation report and human resources documents",
-                "\n\u2022drafting agreements with authorized persons and associated operators",
-                "\n\u2022data processing and record-keeping",
-                "\n\u2022staff training",
+                "\n\u2022GDPR audit:",
+                "\n1) preparation of the operator's evaluation report and human resources documents",
+                "\n2) drafting agreements with authorized persons and associated operators",
+                "\n3) data processing and record-keeping",
+                "\n4) staff training",
                 "\n\u2022legal assistance and representation before the National Authority for the Supervision of Personal Data Processing and the courts"
             ]
         },
@@ -191,11 +191,27 @@
         "id": "appointmentSuggestion",
         "text": "Do you need legal advice or assistance?"
     },
+    "TeamSection": {
+        "coordinatorText": "Managing partner",
+        "associatedText": "Partner",
+        "collaboratorText": "Associate Lawyer"
+    },
     "GetInTouch": {
         "Name": "Name",
         "Email": "Email",
+        "Subject": "Subject",
         "Message": "Message",
         "Phone": "Phone",
-        "Address": "Address"
+        "Address": "Address",
+        "UploadFile": "Upload file",
+        "UploadingFile": "Uploading file...",
+        "UploadFileError": "The file could not be uploaded",
+        "EmailSent": "Email sent",
+        "EmailError": "The email could not be sent",
+        "EmailUploadingError": "File is loading, please wait...",
+        "SubmitButton": "Submit"
+    },
+    "Footer": {
+        "createdBy": "Created by Evolve Software Solutions"
     }
 }

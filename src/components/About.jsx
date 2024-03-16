@@ -1,20 +1,14 @@
 import React from 'react'
 import { SectionWrapper } from '../hoc'
 import { useTranslation } from 'react-i18next'
-import { style } from '../style'
 import { motion } from 'framer-motion'
-import { slideIn, textVariant } from '../utils/motion'
+import { slideIn } from '../utils/motion'
 import { aboutus } from "../assets"
-import TitleSeparator from "../assets/title-separator-small.svg?react"
 
 const About = () => {
     const { t } = useTranslation();
     return (
         <div className='max-w-7xl mx-auto'>
-            <motion.div variants={textVariant()}>
-                <h1 className={`${style.sectionTitles} -mt-14`}>{t("SectionTitles.aboutTitle")}</h1>
-                <TitleSeparator className="-mt-[145px] -mb-[100px] w-full text-secondary" />
-            </motion.div>
             <div className='flex sm:flex-row flex-col justify-between'>
                 <motion.div
                     variants={slideIn("left", "tween", 0.2, 1)}
