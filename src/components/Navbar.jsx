@@ -32,9 +32,9 @@ const Navbar = () => {
         }
     }, []);
 
-    // const handleCountryDropdownClick = (event) => {
-    //     event.stopPropagation(); // Stops the click event from propagating
-    // };
+    const handleCountryDropdownClick = (event) => {
+        event.stopPropagation(); // Stops the click event from propagating
+    };
 
     const handleLanguageChange = useCallback((language) => {
         setCurrentLanguageCode(language);
@@ -179,7 +179,7 @@ const Navbar = () => {
                             src={menu}
                             alt="meniu hamburger"
                             className='menu-icon w-[20px]  object-contain cursor-pointer'
-                            onClick={() => setToggle(!toggle)}
+                            onClick={() => { setToggle(!toggle), handleCountryDropdownClick }}
                         />
                     </div>
 
