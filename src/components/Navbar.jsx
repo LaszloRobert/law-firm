@@ -32,10 +32,9 @@ const Navbar = () => {
         }
     }, []);
 
-    const handleCountryDropdownClick = (event) => {
-        event.stopPropagation(); // Stops the click event from propagating
-        setDropdownOpen(!dropdownOpen);
-    };
+    // const handleCountryDropdownClick = (event) => {
+    //     event.stopPropagation(); // Stops the click event from propagating
+    // };
 
     const handleLanguageChange = useCallback((language) => {
         setCurrentLanguageCode(language);
@@ -71,25 +70,6 @@ const Navbar = () => {
             window.removeEventListener('scroll', scrollPosition);
         }
     }, []);
-
-    useEffect(() => {
-        // Detect if the user is on iOS
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-
-        // Use 'touchend' for iOS, 'click' for other devices
-        const clickEvent = isIOS ? 'touchend' : 'click';
-
-        const menuIcon = document.querySelector('.menu-icon');
-        const handleToggle = () => { setToggle(!toggle) };
-
-        // Add event listener to the menu icon
-        menuIcon.addEventListener(clickEvent, handleToggle);
-
-        // Clean up the event listener when the component is unmounted
-        return () => {
-            menuIcon.removeEventListener(clickEvent, handleToggle);
-        };
-    }, [toggle]);
 
     while (!ready) {
         return null;
@@ -156,7 +136,7 @@ const Navbar = () => {
                         <li key="countries"
                         >
                             <button id="countryDropdown"
-                                onClick={handleCountryDropdownClick}
+                                onClick={() => setDropdownOpen(!dropdownOpen)}
                             >
                                 <ReactCountryFlag
                                     alt="iconita limba selectata"
@@ -199,7 +179,7 @@ const Navbar = () => {
                             src={menu}
                             alt="meniu hamburger"
                             className='menu-icon w-[20px]  object-contain cursor-pointer'
-                            onClick={() => { setToggle(!toggle) }}
+                            onClick={() => setToggle(!toggle)}
                         />
                     </div>
 
@@ -213,7 +193,7 @@ const Navbar = () => {
                             src={close}
                             alt="inchidere"
                             className='w-[20px] h-auto mt-2 ml-auto mr-2 object-contain cursor-pointer '
-                            onClick={() => { setToggle(!toggle) }}
+                            onClick={() => setToggle(!toggle)}
                         />
 
                         <motion.ul
