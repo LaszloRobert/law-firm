@@ -91,8 +91,8 @@ export const mobileUlVariant = {
     opened: {
         opacity: 1,
         transition: {
-            staggerChildren: 0.0,
-            delayChildren: 0.0
+            staggerChildren: 0.1,
+            delayChildren: 0.1
         }
     },
     closed: {
