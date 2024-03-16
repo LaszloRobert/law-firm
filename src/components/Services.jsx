@@ -138,7 +138,7 @@ const ServiceCard = ({ index, title, description }) => {
                     handleMouseLeave(e);
                 }}
                 variants={fadeIn("up", "spring", index * 0.2, 0.75)}
-                className='relative w-[21rem] cursor-pointer m-2'
+                className='relative w-[23rem] cursor-pointer m-2'
                 onClick={handleFlip}>
 
                 <motion.div
@@ -160,7 +160,7 @@ const ServiceCard = ({ index, title, description }) => {
 
                     {/* Front side of the card */}
                     <div
-                        className=" h-[72px] absolute inset-0 px-5 py-6 rounded-md shadow-md bg-secondary  overflow-hidden"
+                        className="h-max absolute inset-0 px-5 py-6 rounded-md shadow-md bg-secondary  overflow-hidden"
                         style={{
                             clipPath: BOTTOM_RIGHT_CLIP,
                         }}
@@ -180,7 +180,7 @@ const ServiceCard = ({ index, title, description }) => {
                     </motion.div>
                 </motion.div>
 
-            </motion.div>
+            </motion.div >
             {/* <motion.div
                 onMouseEnter={(e) => {
                     handleMouseEnter(e);
