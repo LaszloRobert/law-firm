@@ -14,7 +14,7 @@ const About = () => {
                     variants={slideIn("left", "tween", 0.2, 1)}
                     className='md:w-[50%] w-full md:ml-5'>
                     <p
-                        className='text-[15px] md:text-[20px] text-[#645858] text-justify'
+                        className='text-[17px] md:text-[20px] text-[#645858] text-justify'
                     >
                         {t("AboutSection.text")}
                     </p>
