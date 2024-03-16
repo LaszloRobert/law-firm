@@ -10,7 +10,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import AppointmentButton from './reusableComponents/AppointmentButton'
 import { style } from '../style'
 import { navbarMobileVariants, mobileUlVariant, liVariants } from '../utils/motion'
-// import { debounce } from 'lodash';
+import { debounce } from 'lodash';
 
 
 
@@ -33,11 +33,14 @@ const Navbar = () => {
         }
     }, []);
 
-    const handleCountryDropdownClick = (event) => {
-        event.preventDefault();
-        event.stopPropagation(); // Stops the click event from propagating
-        setToggle(!toggle)
-    };
+    // const handleCountryDropdownClick = (event) => {
+    //     event.preventDefault();
+    //     event.stopPropagation(); // Stops the click event from propagating
+    //     setToggle(!toggle)
+    // };
+    const handleCountryDropdownClick = debounce(() => {
+        setToggle(!toggle);
+    }, 100, { leading: true, trailing: false });
 
     const handleLanguageChange = useCallback((language) => {
         setCurrentLanguageCode(language);
@@ -182,7 +185,7 @@ const Navbar = () => {
                             src={menu}
                             alt="meniu hamburger"
                             className='menu-icon w-[20px]  object-contain cursor-pointer'
-                            onClick={(event) => { handleCountryDropdownClick(event) }}
+                            onClick={() => { handleCountryDropdownClick() }}
                         />
                     </div>
 
