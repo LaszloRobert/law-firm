@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./index.html", "./src/**/*.{js,jsx}", "./node_modules/flowbite/**/*.{js,jsx}"],
+  content: ["./index.html", "./src/**/*.{js,jsx}"],
   mode: "jit",
   theme: {
     extend: {
@@ -33,8 +33,8 @@ module.exports = {
     backgroundImage: {
       "hero-pattern": "url('/src/assets/hero-bg.webp')",
       "title-separator-big": "url('/src/assets/title-separator-big.png')",
-      "contact-bg": "url('/src/assets/contact-bg.png')",
-      "services-bg": "url('/src/assets/services-bg.png')",
+      "contact-bg": "url('/src/assets/contact-bg.webp')",
+      "services-bg": "url('/src/assets/services-bg.webp')",
       "maps": "url('/src/assets/maps.png')"
     },
     fontFamily: {

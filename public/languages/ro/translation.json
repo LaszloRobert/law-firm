@@ -60,7 +60,7 @@
         {
             "id": "service4",
             "title": "Acțiuni de carte funciară",
-            "description": "\u2022acțiunea în prestație tabulară\n\u2022acțiunea în prestație tabulară\n\u2022acțiunea în justificare tabulară."
+            "description": "\u2022acțiunea în prestație tabulară\n\u2022acțiunea în rectificare\n\u2022acțiunea în justificare tabulară."
         },
         {
             "id": "service5",
@@ -80,7 +80,7 @@
         {
             "id": "service8",
             "title": "Drepturi reale",
-            "description": "\u2022consultanță juridică, asistență juridică și reprezentare pentru apărarea dreptului de proprietate privată, în cadrul acțiunilor în revendicare, grănițuire, precum și al acțiunii negatorii\n\u2022apărarea posesiei ca stare de fapt\n\u2022apărarea dezmembrămintelor dreptului de proprietate privată\n\u2022moduri de dobândire a dreptului de proprietate privată, prin uzucapiune și accesiune imobiliară, naturală și artificială\n\u2022asistență juridică și reprezentare în materia exproprierii, pentru cauză de utilitate publică"
+            "description": "\u2022consultanță juridică, asistență juridică și reprezentare pentru apărarea dreptului de proprietate privată, în cadrul acțiunilor în revendicare, grănițuire, precum și al acțiunii negatorii\n\u2022apărarea posesiei ca stare de fapt\n\u2022apărarea dezmembrămintelor dreptului de proprietate privată\n\u2022moduri de dobândire a dreptului de proprietate privată, prin uzucapiune și accesiune imobiliară, naturală și artificială\n\u2022asistență juridică și reprezentare în materia exproprierii pentru cauză de utilitate publică"
         },
         {
             "id": "service9",
@@ -90,13 +90,13 @@
         {
             "id": "service10",
             "title": "Drept financiar-bancar",
-            "description": "\u2022consultanță, asistență juridică și reprezentare în materia clauzelor abuzive din contractele încheiate cu instituțiile financiar-bancare\n\u2022acordarea de consultanță privind activitatea bancară\n\u2022consultanță de specialitate în materie de leasing financiar și operațional\n\u2022consultanță de specialitate în materie de leasing financiar și operațional"
+            "description": "\u2022consultanță, asistență juridică și reprezentare în materia clauzelor abuzive din contractele încheiate cu instituțiile financiar-bancare\n\u2022acordarea de consultanță privind activitatea bancară\n\u2022consultanță de specialitate în materie de leasing financiar și operațional"
         },
         {
             "id": "service11",
             "title": "GDPR",
             "description": [
-                "\u2022informare legislativă completă cu privire la prevederile Regulamentului UE nr. 2016/697 al Parlamentului European și al Consiliului din 27 aprilie 2016, referitare la protecţia persoanelor fizice, în ceea ce priveşte prelucrarea datelor cu caracter personal şi privind libera circulaţie a acestor date",
+                "\u2022informare legislativă completă cu privire la prevederile Regulamentului UE nr. 2016/697 al Parlamentului European și al Consiliului din 27 aprilie 2016, referitoare la protecţia persoanelor fizice, în ceea ce priveşte prelucrarea datelor cu caracter personal şi libera circulaţie a acestor date",
                 "\n\u2022audit GDPR:",
                 "\n1) redactarea raportului de evaluare a operatorului, a documentelor de resurse umane",
                 "\n2) redactarea acordurilor cu persoanele împuternicite și operatorii asociați",

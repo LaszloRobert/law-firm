@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { team } from "../constants"
 import { motion } from 'framer-motion'
 import { SectionWrapper } from '../hoc'
@@ -21,8 +21,7 @@ const Team = () => {
 }
 
 const TeamCard = ({ index, person }) => {
-    const { t } = useTranslation();
-    const [isLargerThanMd, setIsLargerThanMd] = useState(false);
+    const { t } = useTranslation()
     return (
         <motion.div
             className="mb-6 lg:mb-0"

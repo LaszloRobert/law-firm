@@ -21,6 +21,7 @@ const Navbar = () => {
 
     //change nav color when scrolling
     const [scrolledDown, setscrolledDown] = useState(false);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
 
     const navLinks = t("Navbar", { returnObjects: true })
 
@@ -31,12 +32,32 @@ const Navbar = () => {
         }
     }, []);
 
+    // const handleLanguageChange = useCallback((language) => {
+    //     setCurrentLanguageCode(language);
+    //     i18next.changeLanguage(language);
+    //     const theDropdown = FlowbiteInstances.getInstance('Dropdown', 'dropdown');
+    //     theDropdown.hide();
+    // }, [setCurrentLanguageCode]);
+
     const handleLanguageChange = useCallback((language) => {
         setCurrentLanguageCode(language);
         i18next.changeLanguage(language);
-        const theDropdown = FlowbiteInstances.getInstance('Dropdown', 'dropdown');
-        theDropdown.hide();
-    }, [setCurrentLanguageCode]);
+        setDropdownOpen(false); // Hide the dropdown
+    }, [setCurrentLanguageCode, setDropdownOpen]);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownOpen && !document.getElementById('dropdown').contains(event.target)) {
+                setDropdownOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [dropdownOpen]);
 
     useEffect(() => {
         const scrollPosition = () => {
@@ -59,7 +80,8 @@ const Navbar = () => {
 
     return (
         <nav
-            className={`${scrolledDown ? "bg-zinc-900" : "bg-navBarBg"} bg-navBarBg w-full top-0 fixed ease-in-out duration-700 z-20`}
+            className={`${scrolledDown ? "bg-zinc-900" : "bg-navBarBg"} bg-navBarBg w-full top-0 fixed ease-in-out duration-700 z-20`
+            }
         >
             <div
                 className='max-w-7xl mx-auto'
@@ -114,44 +136,45 @@ const Navbar = () => {
                         ))}
 
                         {/* country flags */}
-                        <li key="countries">
+                        <li key="countries"
+                        >
                             <button id="countryDropdown"
-                                data-dropdown-toggle="dropdown"
-                                data-dropdown-trigger="click"
+                                onClick={() => setDropdownOpen(!dropdownOpen)}
                             >
                                 <ReactCountryFlag
                                     alt="iconita limba selectata"
                                     countryCode={currentLanguageCode}
                                     svg />
                             </button>
-                            {/* Dropdown Menu */}
-                            <div id="dropdown" className='hidden'>
-                                <ul
-                                    aria-labelledby="countryDropdown"
-                                    className='-mt-2'>
-                                    {languages.filter(language => language.code !== currentLanguageCode).map((language) => (
-                                        <li
-                                            key={language.code}
-                                            onClick={() => handleLanguageChange(language.code)}
-
-                                        >
-                                            <ReactCountryFlag
-                                                alt="iconita limba selectata"
-                                                countryCode={language.code}
-                                                svg
-                                            />
-                                        </li>
-                                    )
-                                    )}
-                                </ul>
-
-                            </div>
-
+                            {dropdownOpen && (
+                                <div id="dropdown" className='absolute'>
+                                    <ul
+                                        aria-labelledby="countryDropdown"
+                                        className='mt-1'
+                                    >
+                                        {languages.filter(language => language.code !== currentLanguageCode).map((language) => (
+                                            <li
+                                                key={language.code}
+                                                onClick={() => {
+                                                    handleLanguageChange(language.code);
+                                                    setDropdownOpen(false);
+                                                }}
+                                            >
+                                                <ReactCountryFlag
+                                                    alt="iconita limba selectata"
+                                                    countryCode={language.code}
+                                                    svg
+                                                />
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
                         </li>
                     </ul>
 
                     {/* blur background when mobile menu is opened */}
-                    <div className={toggle ? 'fixed inset-0 backdrop-filter backdrop-blur-sm' : "hidden"}>
+                    <div onClick={() => { setToggle(!toggle) }} className={toggle ? 'fixed inset-0 backdrop-filter backdrop-blur-sm' : "hidden"}>
                     </div>
                     {/* mobile */}
                     <div className='sm:hidden flex'>

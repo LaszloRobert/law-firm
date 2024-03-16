@@ -29,7 +29,7 @@
     ],
     "AboutSection": {
         "id": "about",
-        "text": "Our company values integrity, transparency, and efficiency.\nWe adopt a pragmatic and results-oriented approach, demonstrating a strong commitment to excellence and professional ethics. Our goal is to consistently offer tailored legal solutions that meet the specific needs of each case. Therefore, we actively pursue continuous professional training to remain abreast of the latest legislative and jurisprudential changes, as well as the best practices in the field. Our experience in the field, as well as proactive approach and meticulous attention to detail set us apart."
+        "text": "Our company values integrity, transparency, and efficiency.\nWe adopt a pragmatic and results-oriented approach, demonstrating a strong commitment to excellence and professional ethics. Our goal is to consistently offer tailored legal solutions that meet the specific needs of each case. Therefore, we actively pursue continuous professional training to remain abreast of the latest legislative and jurisprudential changes. Our experience in the field, as well as proactive approach and meticulous attention to detail set us apart."
     },
     "Appointment": {
         "id": "appointment",
@@ -109,7 +109,7 @@
         },
         {
             "id": "service8",
-            "title": "Property law",
+            "title": "Property Law",
             "description": [
                 "\u2022legal consultancy, assistance, and representation for the defence of private property rights, including actions of reclamation, demarcation, and negative action",
                 "\n\u2022defence of possession as a factual state",
@@ -164,7 +164,7 @@
         },
         {
             "id": "service13",
-            "title": "Misdemeanour law",
+            "title": "Misdemeanour Law",
             "description": [
                 "\u2022legal assistance and representation in contesting contravention notices and the associated sanctions"
             ]
