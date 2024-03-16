@@ -33,6 +33,7 @@ const ServiceCard = ({ index, title, description }) => {
     const backRef = useRef();
     const [height, setHeight] = useState('auto');
     const [isFlipped, setIsFlipped] = useState(false);
+    const [showFront, setShowFront] = useState(true); // New state to control front visibility
     useEffect(() => {
         // Adjust the height based on the flipped state
         const backHeight = backRef.current.offsetHeight;
@@ -47,6 +48,11 @@ const ServiceCard = ({ index, title, description }) => {
 
     const handleFlip = () => {
         setIsFlipped(!isFlipped);
+
+        // Set a timeout to hide the front side after 0.8 seconds
+        setTimeout(() => {
+            setShowFront(!showFront);
+        }, 300);
     };
 
     const NO_CLIP = "polygon(0 0, 100% 0, 100% 100%, 0% 100%)";
@@ -136,7 +142,7 @@ const ServiceCard = ({ index, title, description }) => {
             >
                 {/* Front side of the card */}
                 <motion.div
-                    className="px-5 py-6 rounded-md shadow-md shadow-secondary overflow-hidden"
+                    className={`${!showFront ? "hidden" : "relative"} px-5 py-6 rounded-md shadow-md shadow-secondary overflow-hidden`}
                 >
                     <h2 className='font-bold text-center mx-auto text-tertiary'>{title}</h2>
                 </motion.div>
@@ -154,7 +160,7 @@ const ServiceCard = ({ index, title, description }) => {
 
                 {/* Back side of the card */}
                 <motion.div
-                    className={`${isFlipped ? "relative -mt-[70px]" : "absolute"} px-5 py-6 rounded-md bg-secondary text-white inset-0`}
+                    className={`${isFlipped ? "relative" : "absolute"} px-5 py-6 rounded-md bg-secondary text-white inset-0`}
                     style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
                     ref={backRef} // Reference for measuring height
                 >
