@@ -72,6 +72,25 @@ const Navbar = () => {
         }
     }, []);
 
+    useEffect(() => {
+        // Detect if the user is on iOS
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+        // Use 'touchend' for iOS, 'click' for other devices
+        const clickEvent = isIOS ? 'touchend' : 'click';
+
+        const menuIcon = document.querySelector('.menu-icon');
+        const handleToggle = () => { setToggle(!toggle) };
+
+        // Add event listener to the menu icon
+        menuIcon.addEventListener(clickEvent, handleToggle);
+
+        // Clean up the event listener when the component is unmounted
+        return () => {
+            menuIcon.removeEventListener(clickEvent, handleToggle);
+        };
+    }, [toggle]);
+
     while (!ready) {
         return null;
     }
@@ -179,7 +198,7 @@ const Navbar = () => {
                         <img
                             src={menu}
                             alt="meniu hamburger"
-                            className='w-[20px]  object-contain cursor-pointer'
+                            className='menu-icon w-[20px]  object-contain cursor-pointer'
                             onClick={() => { setToggle(!toggle) }}
                         />
                     </div>
