@@ -113,7 +113,7 @@ const Navbar = () => {
                     <div className='flex'>
                         <Link
                             to='/'
-                            className='font-dance relative text-[1.4rem] text-primary'
+                            className='relative text-[1.4rem] text-primary'
                             onClick={() => { window.scrollTo(0, 0) }}
                         >
                             RUSA și Asociații
