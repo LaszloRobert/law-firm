@@ -10,7 +10,7 @@ const Services = () => {
     const services = t("ServicesSection", { returnObjects: true });
     return (
         <>
-            <div className="bg-services-bg bg-scroll  bg-cover absolute top-0 left-0 right-0 bottom-0 z-[-1] "> </div>
+            <div className="bg-services-bg  bg-cover absolute top-0 left-0 right-0 bottom-0 z-[-1] "> </div>
             <div className="bg-contactOverlay w-full h-full absolute top-0 right-0 bottom-0 left-0  z-[-1]"></div>
             <div className="max-w-7xl mx-auto">
                 <div
